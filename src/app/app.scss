@@ -1,0 +1,68 @@
+@use '../../projects/ngx-table/src/lib/ngx-table.scss' as table;
+
+:host {
+    @include table.ngx-table-vars($thead-top: 64px);
+
+    max-width: 860px;
+    margin: 0;
+    padding: 0;
+    font-family: var(--mat-sys-body-large);
+    color: var(--mat-sys-on-surface);
+}
+
+$nav-height: 64px;
+$body-padding: 8px;
+$body-height: calc(100% - $nav-height - $body-padding);
+
+.navigation {
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: var(--mat-sys-surface);
+    z-index: 2;
+    height: $nav-height;
+    padding: 0 8px;
+
+    h1 {
+        flex-grow: 1;
+        font: var(--mat-sys-headline-medium);
+    }
+}
+
+.app-content {
+    height: $body-height;
+    display: flex;
+    flex-direction: column;
+    padding: 0 $body-padding $body-padding;
+}
+
+section {
+    margin-bottom: 3rem;
+
+    h2 {
+        font: var(--mat-sys-headline-small);
+    }
+
+    p {
+        font: var(--mat-sys-body-large);
+        color: var(--mat-sys-);
+    }
+
+    code {
+        font-family: 'Roboto Mono', monospace;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 0.85em;
+
+        background: var(--mat-sys-inverse-surface);
+        color: var(--mat-sys-inverse-on-surface);
+        padding: 0.1em 0.35em;
+        border-radius: var(--mat-sys-corner-small);
+    }
+}
+
+.demo-table {
+    width: 100%;
+}

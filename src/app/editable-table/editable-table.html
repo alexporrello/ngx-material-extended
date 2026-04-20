@@ -1,0 +1,48 @@
+<section>
+    <h2>Editable Table</h2>
+
+    <ngx-table class="demo-table">
+        <ngx-thead>
+            <ngx-tr color="secondary">
+                <ngx-th>Name</ngx-th>
+                <ngx-th>Team</ngx-th>
+                <ngx-th>Role</ngx-th>
+                <ngx-th>Tenure (yrs)</ngx-th>
+            </ngx-tr>
+        </ngx-thead>
+
+        <ngx-tbody>
+            @for (eng of data.engineers; track eng.name) {
+                <ngx-tr>
+                    <ngx-editable-td
+                        [value]="eng.name"
+                        [emitOnBlur]="true"
+                        (onValueChange)="onCellEdit($event)">
+                    </ngx-editable-td>
+                    <ngx-editable-td
+                        [value]="eng.role"
+                        [emitOnBlur]="true"
+                        (onValueChange)="onCellEdit($event)">
+                    </ngx-editable-td>
+                    <ngx-editable-td
+                        [value]="eng.team"
+                        [emitOnBlur]="true"
+                        (onValueChange)="onCellEdit($event)">
+                    </ngx-editable-td>
+                    <ngx-editable-td
+                        [value]="eng.tenure + ''"
+                        [emitOnBlur]="true"
+                        (onValueChange)="onCellEdit($event)">
+                    </ngx-editable-td>
+                </ngx-tr>
+            }
+        </ngx-tbody>
+
+        <ngx-tfoot>
+            <ngx-tr>
+                <ngx-th [colspan]="3">Total</ngx-th>
+                <ngx-th>{{ data.totalTenure }}</ngx-th>
+            </ngx-tr>
+        </ngx-tfoot>
+    </ngx-table>
+</section>

@@ -1,0 +1,90 @@
+.mex-table {
+    border-spacing: 0;
+
+    th,
+    td {
+        padding: 4px 8px;
+    }
+
+    th {
+        background: var(--mat-sys-surface-container);
+        color: var(--mat-sys-on-surface-container);
+        text-align: left;
+        font: var(--mat-sys-label-medium);
+        position: sticky;
+        top: 0;
+    }
+
+    td {
+        background: var(--mat-sys-surface);
+        color: var(--mat-sys-on-surface);
+        font: var(--mat-sys-body-large);
+    }
+
+    thead {
+        
+    }
+
+    // Mex table cell
+
+    th.mex-table-cell,
+    td.mex-table-cell {
+        padding: 0;
+        background: var(--mat-sys-surface);
+
+        .mex-table-cell-content {
+            display: flex;
+            padding: 4px 8px;
+            width: calc(100% - 16px);
+        }
+    }
+
+    th.mex-table-cell .mex-table-cell-content {
+        background: var(--mat-sys-surface-container);
+        color: var(--mat-sys-on-surface-container);
+    }
+
+    td.mex-table-cell .mex-table-cell-content {
+        background: var(--mat-sys-su);
+    }
+
+    //
+    // Outline
+    //
+
+    // Outline bottom - section + section
+    .mex-table-section:has(+ .mex-table-section) {
+        tr:last-child {
+            th,
+            td {
+                border-bottom: solid 1px var(--mat-sys-outline-variant);
+            }
+        }
+    }
+    // Outline bottom - row + row
+    tr:has(+ tr) {
+        th,
+        td {
+            border-bottom: solid 1px var(--mat-sys-outline-variant);
+        }
+    }
+    // Outline right - cell + cell
+    th:has(+ th),
+    td:has(+ td) {
+        border-right: solid 1px var(--mat-sys-outline-variant);
+    }
+
+    //
+    // Corners
+    //
+
+    .mex-table-section:first-child tr:first-child {
+        .mex-table-cell:first-child .mex-table-cell-content {
+            border-top-left-radius: var(--mat-sys-corner-medium);
+        }
+
+        .mex-table-cell:last-child .mex-table-cell-content {
+            border-top-right-radius: var(--mat-sys-corner-medium);
+        }
+    }
+}

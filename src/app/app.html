@@ -1,0 +1,38 @@
+<span class="navigation">
+    <h1>{{ service.pageTitle() }}</h1>
+
+    <button
+        mat-icon-button
+        [matMenuTriggerFor]="navMenu">
+        <span class="material-symbols-rounded"> more_vert </span>
+    </button>
+
+    <mat-menu #navMenu>
+        <button
+            mat-menu-item
+            (click)="router.navigate(['basic-table'])">
+            Basic Table
+        </button>
+        <button
+            mat-menu-item
+            (click)="router.navigate(['editable'])">
+            Editable Table
+        </button>
+    </mat-menu>
+
+    <button
+        mat-icon-button
+        (click)="toggleLightDarkMode()">
+        <span class="material-symbols-rounded">
+            @if (lightMode()) {
+                light_mode
+            } @else {
+                dark_mode
+            }
+        </span>
+    </button>
+</span>
+
+<div class="app-content">
+    <router-outlet />
+</div>
