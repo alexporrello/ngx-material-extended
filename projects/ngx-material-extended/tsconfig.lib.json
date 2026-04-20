@@ -5,9 +5,7 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "declaration": true,
-    "declarationMap": true,
-    "inlineSources": true,
-    "types": []
+    "declarationMap": true
   },
   "include": [
     "src/**/*.ts"

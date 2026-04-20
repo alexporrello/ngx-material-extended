@@ -1,5 +1,15 @@
 .mex-table {
     border-spacing: 0;
+    width: 100%;
+
+    thead {
+        z-index: 1;
+        background: var(--mat-sys-surface-variant);
+    }
+
+    tfoot {
+        z-index: 2;
+    }
 
     th,
     td {
@@ -10,9 +20,7 @@
         background: var(--mat-sys-surface-container);
         color: var(--mat-sys-on-surface-container);
         text-align: left;
-        font: var(--mat-sys-label-medium);
-        position: sticky;
-        top: 0;
+        font: var(--mat-sys-label-large);
     }
 
     td {
@@ -21,31 +29,45 @@
         font: var(--mat-sys-body-large);
     }
 
-    thead {
-        
+    .mex-table-section-divider {
+        td {
+            background: var(--mat-sys-surface-variant);
+            border-bottom: none !important;
+        }
+
+        &.large td {
+            padding: 8px 12px;
+        }
+
+        &.medium td {
+            padding: 2px 4px;
+        }
+
+        &.small td {
+            padding: 1px 2px;
+        }
     }
 
     // Mex table cell
 
-    th.mex-table-cell,
-    td.mex-table-cell {
+    .mex-table-cell {
         padding: 0;
-        background: var(--mat-sys-surface);
+        height: 1px;
+        background: var(--mat-sys-surface-variant);
 
         .mex-table-cell-content {
             display: flex;
+            align-items: center;
             padding: 4px 8px;
             width: calc(100% - 16px);
+            height: calc(100% - 8px);
+            background: var(--mat-sys-surface);
         }
     }
 
     th.mex-table-cell .mex-table-cell-content {
         background: var(--mat-sys-surface-container);
         color: var(--mat-sys-on-surface-container);
-    }
-
-    td.mex-table-cell .mex-table-cell-content {
-        background: var(--mat-sys-su);
     }
 
     //
@@ -62,23 +84,22 @@
         }
     }
     // Outline bottom - row + row
-    tr:has(+ tr) {
+    .mex-table-row:has(+ .mex-table-row) {
         th,
         td {
             border-bottom: solid 1px var(--mat-sys-outline-variant);
         }
     }
     // Outline right - cell + cell
-    th:has(+ th),
-    td:has(+ td) {
+    .mex-table-cell-base:has(+ .mex-table-cell-base) {
         border-right: solid 1px var(--mat-sys-outline-variant);
     }
 
     //
-    // Corners
+    // Rounded Corners
     //
 
-    .mex-table-section:first-child tr:first-child {
+    @mixin rounded-top-row() {
         .mex-table-cell:first-child .mex-table-cell-content {
             border-top-left-radius: var(--mat-sys-corner-medium);
         }
@@ -87,4 +108,51 @@
             border-top-right-radius: var(--mat-sys-corner-medium);
         }
     }
+
+    @mixin rounded-bottom-row() {
+        .mex-table-cell:first-child .mex-table-cell-content {
+            border-bottom-left-radius: var(--mat-sys-corner-medium);
+        }
+
+        .mex-table-cell:last-child .mex-table-cell-content {
+            border-bottom-right-radius: var(--mat-sys-corner-medium);
+        }
+    }
+
+    .mex-rounded-top-row {
+        @include rounded-top-row();
+    }
+
+    .mex-rounded-bottom-row {
+        @include rounded-bottom-row();
+    }
+
+    .mex-rounded-top-table-section .mex-table-row:first-child {
+        @include rounded-top-row();
+    }
+
+    .mex-rounded-bottom-table-section .mex-table-row:last-child {
+        @include rounded-bottom-row();
+    }
+
+    //
+    // Subsection
+    //
+
+    // .mex-table-section.subsection {
+    //     background: orange;
+
+    //     .mex-editable-row,
+    //     .mex-table-row {
+    //         .mex-table-cell:first-child {
+    //             background: orange;
+    //             padding-left: 8px;
+    //         }
+
+    //         .mex-table-cell:last-child {
+    //             background: orange;
+    //             padding-right: 8px;
+    //         }
+    //     }
+    // }
 }
