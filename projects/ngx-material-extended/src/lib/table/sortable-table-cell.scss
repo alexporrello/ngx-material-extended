@@ -1,0 +1,26 @@
+.sortable-table-cell-title {
+    flex-grow: 1;
+}
+
+mex-symbol {
+    cursor: pointer;
+}
+
+.hide-mat-select {
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+}
+
+.hide-input {
+    visibility: hidden;
+}
+
+button {
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    height: 24px;
+}

@@ -1,4 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    inject,
+    ViewEncapsulation
+} from '@angular/core';
 
 @Component({
     selector: '[mex-table]',
@@ -9,4 +14,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
         class: 'mex-table'
     }
 })
-export class MexTable {}
+export class MexTable {
+    public host: ElementRef<HTMLTableElement> = inject(ElementRef);
+}

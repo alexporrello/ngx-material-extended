@@ -35,12 +35,12 @@ export const EditableTdValidator = {
     templateUrl: './editable-table-cell.html',
     styleUrl: './editable-table-cell.scss',
     host: {
-        class: 'mex-editable-table-cell mex-table-cell-base',
+        class: 'mex-table-cell mex-table-cell-base',
         '[class.invalid]': 'invalid()',
         '[class.formula]': 'formula()',
         '[class.unsaved]': 'unsaved()',
         '[class.error]': 'invalid()',
-        '(click)': 'inputRef().nativeElement.focus()'
+        '(click)': 'inputRef()?.nativeElement?.focus()'
     },
     encapsulation: ViewEncapsulation.None
 })
@@ -62,7 +62,7 @@ export class MexEditableTableCell {
     public readonly unsaved = signal(false);
     public readonly loading = signal(false);
 
-    public readonly disabled = signal(false);
+    public readonly disabled = model(false);
     public readonly success = signal(false);
     public readonly failure = signal(false);
 

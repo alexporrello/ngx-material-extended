@@ -5,6 +5,7 @@ import { MexTableCell } from './table-cell';
 import { MexTableRow } from './table-row';
 import { MexTableSectionDivider } from './table-section-divider';
 import { MexEditableTableCell } from './editable-table-cell';
+import { MexSortableTableCell } from './sortable-table-cell';
 
 const components = [
     MexTable,
@@ -12,7 +13,8 @@ const components = [
     MexTableCell,
     MexTableRow,
     MexTableSectionDivider,
-    MexEditableTableCell
+    MexEditableTableCell,
+    MexSortableTableCell
 ];
 
 @NgModule({

@@ -1,27 +1,27 @@
-<span class="mex-editable-table-cell-content">
-    <div class="input-wrapper">
-        <input
-            #input
-            [value]="value()"
-            [disabled]="disabled()"
-            (keyup)="onInputChange($event, input)"
-            (focus)="onFocus(input)"
-            (blur)="onBlur(input)" />
+<span class="mex-table-cell-base mex-editable-table-cell-content">
+    <!-- <div class="input-wrapper"> -->
+    <input
+        #input
+        [value]="value()"
+        [disabled]="disabled()"
+        (keyup)="onInputChange($event, input)"
+        (focus)="onFocus(input)"
+        (blur)="onBlur(input)" />
 
-        @if (unsaved()) {
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="24px"
-                viewBox="0 -960 960 960"
-                width="24px"
-                fill="orange">
-                <path
-                    d="M186.34-176.5q-8.34 0-14.99-4.13-6.65-4.12-9.85-10.37-4.17-6.1-4.58-13.55-.42-7.45 4.42-15.48l294.32-505.94Q460-733.5 466.25-737q6.25-3.5 13.75-3.5t13.75 3.5q6.25 3.5 11.09 11.03l294.32 505.94q4.34 8.03 3.84 15.28T798.75-191q-3.75 6.5-10.25 10.5t-14.84 4H186.34ZM180.5-202h599L480-718 180.5-202Zm313-66q5.5-5.5 5.5-13.5t-5.5-13.5q-5.5-5.5-13.5-5.5t-13.5 5.5q-5.5 5.5-5.5 13.5t5.5 13.5q5.5 5.5 13.5 5.5t13.5-5.5Zm-4.25-75.77Q493-347.55 493-353v-173q0-4.95-3.79-8.72-3.78-3.78-9-3.78-5.21 0-8.96 3.78-3.75 3.77-3.75 8.72v173q0 5.45 3.79 9.23 3.78 3.77 9 3.77 5.21 0 8.96-3.77ZM480-460Z" />
-            </svg>
-        }
+    @if (unsaved()) {
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="orange">
+            <path
+                d="M186.34-176.5q-8.34 0-14.99-4.13-6.65-4.12-9.85-10.37-4.17-6.1-4.58-13.55-.42-7.45 4.42-15.48l294.32-505.94Q460-733.5 466.25-737q6.25-3.5 13.75-3.5t13.75 3.5q6.25 3.5 11.09 11.03l294.32 505.94q4.34 8.03 3.84 15.28T798.75-191q-3.75 6.5-10.25 10.5t-14.84 4H186.34ZM180.5-202h599L480-718 180.5-202Zm313-66q5.5-5.5 5.5-13.5t-5.5-13.5q-5.5-5.5-13.5-5.5t-13.5 5.5q-5.5 5.5-5.5 13.5t5.5 13.5q5.5 5.5 13.5 5.5t13.5-5.5Zm-4.25-75.77Q493-347.55 493-353v-173q0-4.95-3.79-8.72-3.78-3.78-9-3.78-5.21 0-8.96 3.78-3.75 3.77-3.75 8.72v173q0 5.45 3.79 9.23 3.78 3.77 9 3.77 5.21 0 8.96-3.77ZM480-460Z" />
+        </svg>
+    }
 
-        <ng-content></ng-content>
-    </div>
+    <ng-content></ng-content>
+    <!-- </div> -->
 
     @if (loading()) {
         <div

@@ -1,0 +1,40 @@
+<span [class]="contentClass()">
+    <span
+        class="sortable-table-cell-title"
+        (click)="sort.emit()">
+        <ng-content />
+    </span>
+
+    @if (sorting()) {
+        <button (click)="sort.emit()">
+            <mex-symbol>
+                {{ sortIcon() }}
+            </mex-symbol>
+        </button>
+    }
+
+    @let filtered = filtering();
+
+    @if (showFilterIcon()) {
+        <button (click)="selectFilter.open()">
+            <mex-symbol [class.filtered]="filtered"> filter_alt </mex-symbol>
+        </button>
+
+        <span class="hide-mat-select">
+            <mat-select
+                #selectFilter
+                multiple
+                class="hide-input"
+                (opened)="filtering.set(true)"
+                (closed)="this.filterVals.set(selectFilter.value);filtering.set(false)">
+                @if (filterOpts(); as vals) {
+                    @for (val of vals; track $index) {
+                        <mat-option [value]="val">
+                            {{ val ?? '(blank)' }}
+                        </mat-option>
+                    }
+                }
+            </mat-select>
+        </span>
+    }
+</span>
