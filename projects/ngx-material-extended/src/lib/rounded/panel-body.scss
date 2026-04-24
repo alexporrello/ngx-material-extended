@@ -1,0 +1,56 @@
+$background: var(--mat-sys-surface-variant);
+
+$thumb-color: var(--mat-sys-outline);
+$track-color: $background;
+$width: 12px;
+
+mex-panel-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.mex-panel-body {
+    background: var(--mat-sys-surface-variant);
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    &::-webkit-scrollbar {
+        width: $width;
+        height: $width;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background: $thumb-color;
+        border: solid 4px $track-color;
+
+        &:hover {
+            border: solid 2px $track-color;
+        }
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        background: var(--mat-sys-surface);
+        flex-grow: 1;
+    }
+
+    &__spacer {
+        background: var(--mat-sys-surface);
+        width: 100%;
+        flex-grow: 1;
+    }
+}
