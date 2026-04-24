@@ -14,7 +14,9 @@
             "ngx-param-control": [
                 "./projects/ngx-param-control/src/public-api.ts"
             ],
-            "ngx-table": ["./projects/ngx-table/src/public-api.ts"]
+            "ngx-table": [
+                "./projects/ngx-table/src/public-api.ts"
+            ]
         },
         "noFallthroughCasesInSwitch": true,
         "skipLibCheck": true,
@@ -38,12 +40,6 @@
         },
         {
             "path": "./tsconfig.spec.json"
-        },
-        {
-            "path": "./projects/ngx-param-control/tsconfig.lib.json"
-        },
-        {
-            "path": "./projects/ngx-param-control/tsconfig.spec.json"
         },
         {
             "path": "./projects/ngx-table/tsconfig.lib.json"
