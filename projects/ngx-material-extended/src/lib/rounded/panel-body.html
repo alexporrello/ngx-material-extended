@@ -1,15 +1,9 @@
-@if (!panelHasHeader()) {
-    <div class="rounded top-left"></div>
-    <div class="rounded top-right"></div>
-}
-
-@if (!panelHasFooter()) {
-    <div class="rounded bottom-left"></div>
-    <div class="rounded bottom-right"></div>
-}
-
 <div class="mex-panel-body">
-    <div class="mex-panel-body__content">
-        <ng-content />
-    </div>
+    @if (showContent()) {
+        <div
+            class="mex-panel-body__content"
+            @minimize-user-summary>
+            <ng-content />
+        </div>
+    }
 </div>

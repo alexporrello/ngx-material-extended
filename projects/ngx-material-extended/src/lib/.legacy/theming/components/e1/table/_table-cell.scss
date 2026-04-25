@@ -1,0 +1,23 @@
+@mixin all-cells {
+    padding: 6px 12px;
+    text-align: left;
+    transition:
+        background 250ms ease,
+        width 250ms ease;
+
+    span {
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+
+        .mat-icon {
+            transition: 250ms ease;
+
+            &__hide {
+                transform: translateX(100%);
+            }
+        }
+    }
+}

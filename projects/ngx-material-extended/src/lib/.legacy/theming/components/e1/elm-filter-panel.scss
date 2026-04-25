@@ -1,0 +1,75 @@
+@use '../../core' as core;
+
+body {
+    --elm-filter-offset-top: 88px;
+}
+
+.elm-filter-panel {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 32px);
+    padding: 0 16px;
+    display: flex;
+    background: var(--mat-sys-surface);
+    border: solid 1px var(--mat-sys-outline);
+    border-radius: 4px;
+
+    &__carret {
+        transition: 500ms ease transform;
+
+        &__collapsed {
+            transform: rotate(180);
+        }
+    }
+
+    &__title {
+        gap: 8px;
+        align-items: center;
+        top: 0;
+        display: flex;
+        flex-grow: 1;
+
+        &--text {
+            // @extend .mat-headline;
+            padding: 16px 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        &--clickable {
+            cursor: pointer;
+        }
+    }
+
+    &__footer {
+        height: 15px;
+    }
+
+    &__filters {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        &__actions {
+            display: flex;
+            width: 100%;
+            justify-content: end;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        width: 100%;
+        justify-content: end;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        gap: 8px;
+    }
+
+    &__page {
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 48px;
+    }
+}

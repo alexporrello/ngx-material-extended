@@ -1,0 +1,418 @@
+@use 'm3-sys-font-vars' as font;
+@forward 'm3-sys-font-vars';
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 3.562rem |
+/// | Weight | 400 |
+/// | Height | 4rem |
+@mixin display-large(
+    $line-height: font.$mat-sys-display-large-line-height,
+    $font-weight: font.$mat-sys-display-large-weight
+) {
+    font-family: font.$mat-sys-display-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-display-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 2.812rem |
+/// | Weight | 400 |
+/// | Height | 3.25rem |
+@mixin display-medium(
+    $line-height: font.$mat-sys-display-medium-line-height,
+    $font-weight: font.$mat-sys-display-medium-weight
+) {
+    font-family: font.$mat-sys-display-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-display-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 2.25rem |
+/// | Weight | 400 |
+/// | Height | 2.75rem |
+@mixin display-small(
+    $line-height: font.$mat-sys-display-small-line-height,
+    $font-weight: font.$mat-sys-display-small-weight
+) {
+    font-family: font.$mat-sys-display-small-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-display-small-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 2rem |
+/// | Weight | 400 |
+/// | Height | 2.5rem |
+@mixin headline-large(
+    $line-height: font.$mat-sys-headline-large-line-height,
+    $font-weight: font.$mat-sys-headline-large-weight
+) {
+    font-family: font.$mat-sys-headline-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-headline-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 1.75rem |
+/// | Weight | 400 |
+/// | Height | 2.25rem |
+@mixin headline-medium(
+    $line-height: font.$mat-sys-headline-medium-line-height,
+    $font-weight: font.$mat-sys-headline-medium-weight
+) {
+    font-family: font.$mat-sys-headline-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-headline-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 1.5rem |
+/// | Weight | 400 |
+/// | Height | 2rem |
+@mixin headline-small(
+    $flat: false,
+    $line-height: font.$mat-sys-headline-small-line-height,
+    $font-weight: font.$mat-sys-headline-small-weight
+) {
+    font-family: font.$mat-sys-headline-small-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-headline-small-size;
+    font-weight: $font-weight;
+
+    @if ($flat == false) {
+        line-height: $line-height;
+    } @else {
+        line-height: font.$mat-sys-headline-small-size;
+    }
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 1.375rem |
+/// | Weight | 400 |
+/// | Height | 1.75rem |
+@mixin title-large(
+    $line-height: font.$mat-sys-title-large-line-height,
+    $font-weight: font.$mat-sys-title-large-weight
+) {
+    font-family: font.$mat-sys-title-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-title-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 1rem |
+/// | Weight | 500 |
+/// | Height | 1.5rem |
+@mixin title-medium(
+    $line-height: font.$mat-sys-title-medium-line-height,
+    $font-weight: font.$mat-sys-title-medium-weight
+) {
+    font-family: font.$mat-sys-title-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-title-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 1rem |
+/// | Weight | 400 |
+/// | Height | 1.5rem |
+@mixin body-large(
+    $line-height: font.$mat-sys-body-large-line-height,
+    $font-weight: font.$mat-sys-body-large-weight
+) {
+    font-family: font.$mat-sys-body-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-body-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.875rem |
+/// | Weight | 500 |
+/// | Height | 1.25rem |
+@mixin label-large(
+    $line-height: font.$mat-sys-label-large-line-height,
+    $font-weight: font.$mat-sys-label-large-weight
+) {
+    font-family: font.$mat-sys-label-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-label-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.875rem |
+/// | Weight | 500 |
+/// | Height | 1.25rem |
+@mixin label-large-prominent(
+    $line-height: font.$mat-sys-label-large-line-height,
+    $font-weight: font.$mat-sys-label-large-weight-prominent
+) {
+    font-family: font.$mat-sys-label-large-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-label-large-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.875rem |
+/// | Weight | 500 |
+/// | Height | 1.25rem |
+@mixin title-small(
+    $line-height: font.$mat-sys-title-small-line-height,
+    $font-weight: font.$mat-sys-title-small-weight
+) {
+    font-family: font.$mat-sys-title-small-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-title-small-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.875rem |
+/// | Weight | 400 |
+/// | Height | 1.25rem |
+@mixin body-medium(
+    $line-height: font.$mat-sys-body-medium-line-height,
+    $font-weight: font.$mat-sys-body-medium-weight
+) {
+    font-family: font.$mat-sys-body-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-body-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.75rem |
+/// | Weight | 500 |
+/// | Height | 1rem |
+@mixin label-medium(
+    $line-height: font.$mat-sys-label-medium-line-height,
+    $font-weight: font.$mat-sys-label-medium-weight
+) {
+    font-family: font.$mat-sys-label-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-label-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.75rem |
+/// | Weight | 500 |
+/// | Height | 1rem |
+@mixin label-medium-prominent(
+    $line-height: font.$mat-sys-label-medium-line-height,
+    $font-weight: font.$mat-sys-label-medium-weight-prominent
+) {
+    font-family: font.$mat-sys-label-medium-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-label-medium-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.75rem |
+/// | Weight | 400 |
+/// | Height | 1rem |
+@mixin body-small(
+    $line-height: font.$mat-sys-body-small-line-height,
+    $font-weight: font.$mat-sys-body-small-weight
+) {
+    font-family: font.$mat-sys-body-small-font;
+    line-height: $line-height;
+    font-size: font.$mat-sys-body-small-size;
+    font-weight: $font-weight;
+}
+
+/// | Prop. | Value |
+/// | --- | --- |
+/// | Size | 0.688rem |
+/// | Weight | 500 |
+/// | Height | 1rem |
+@mixin label-small(
+    $flat: false,
+    $line-height: font.$mat-sys-label-small-line-height,
+    $font-weight: font.$mat-sys-label-small-weight
+) {
+    font-family: font.$mat-sys-label-small-font;
+    font-size: font.$mat-sys-label-small-size;
+    font-weight: $font-weight;
+
+    @if ($flat == false) {
+        line-height: $line-height;
+    } @else {
+        line-height: font.$mat-sys-label-small-size;
+    }
+}
+
+.mat-display-large {
+    @include display-large();
+}
+
+.mat-display-medium {
+    @include display-medium();
+}
+
+.mat-display-small {
+    @include display-small();
+}
+
+h1,
+.mat-headline-large {
+    @include headline-large();
+}
+
+h2,
+.mat-headline-medium {
+    @include headline-medium();
+}
+
+h3,
+.mat-headline-small {
+    @include headline-small();
+}
+
+h4,
+.mat-title-large {
+    @include title-large();
+}
+
+h5,
+.mat-title-medium {
+    @include title-medium();
+}
+
+h6,
+.mat-title-small {
+    @include title-small();
+}
+
+p,
+.mat-body-large {
+    @include body-large();
+    padding: 0;
+    margin: 0;
+}
+
+.mat-body-medium {
+    @include body-medium();
+}
+
+.mat-body-small {
+    @include body-small();
+}
+
+.mat-label-large {
+    @include label-large();
+}
+
+.mat-label-large-prominent {
+    @include label-large-prominent();
+}
+
+.mat-label-medium {
+    @include label-medium();
+}
+
+.mat-label-medium-prominent {
+    @include label-medium-prominent();
+}
+
+.mat-label-small {
+    @include label-small();
+}
+
+// Flat styles
+
+.mat-display-large {
+    @include display-large();
+}
+
+.mat-display-medium {
+    @include display-medium();
+}
+
+.mat-display-small {
+    @include display-small();
+}
+
+.mat-headline-large {
+    @include headline-large();
+}
+
+.mat-headline-medium {
+    @include headline-medium();
+}
+
+.mat-headline-small {
+    @include headline-small();
+}
+
+.mat-title-large {
+    @include title-large();
+}
+
+.mat-title-medium {
+    @include title-medium();
+}
+
+.mat-title-small {
+    @include title-small();
+}
+
+p,
+.mat-body-large {
+    @include body-large();
+}
+
+.mat-body-medium {
+    @include body-medium();
+}
+
+.mat-body-small {
+    @include body-small();
+}
+
+.mat-label-large {
+    @include label-large();
+}
+
+.mat-label-large-prominent {
+    @include label-large-prominent();
+}
+
+.mat-label-medium-flat {
+    @include label-medium($line-height: font.$mat-sys-label-medium-size);
+}
+
+.mat-label-medium-prominent {
+    @include label-medium-prominent();
+}
+
+.mat-label-small {
+    @include label-small();
+}

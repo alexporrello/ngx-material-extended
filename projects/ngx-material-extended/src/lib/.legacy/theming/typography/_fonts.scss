@@ -1,0 +1,12 @@
+@use './typography/e2-fonts';
+@use './typography/e2-typography' as elm;
+
+@use '@angular/material' as mat;
+
+$elm-typography: elm.elm-typography-font-family-config(
+    $brand: 'Google Sans',
+    $brand-alt: 'Open Sans',
+    $font-alt: 'Arial'
+);
+
+@include sym.load-material-symbols('outlined', 0, 100, 0, 24);

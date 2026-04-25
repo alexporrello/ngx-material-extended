@@ -1,0 +1,47 @@
+.emphasized-default {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-surface-container-high);
+    color: var(--mat-sys-on-surface);
+}
+
+.emphasized-primary {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+}
+
+.emphasized-primary-fixed {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-primary-fixed);
+    color: var(--mat-sys-on-primary-fixed);
+}
+
+.emphasized-accent {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-tertiary);
+    color: var(--mat-sys-on-tertiary);
+}
+
+.emphasized-accent-fixed {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-tertiary-fixed);
+    color: var(--mat-sys-on-tertiary-fixed);
+}
+
+.emphasized-warn {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-error);
+    color: var(--mat-sys-on-error);
+}
+
+.emphasized-notice {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-warn);
+    color: var(--mat-sys-on-warn);
+}
+
+.emphasized-notice-fixed {
+    font: var(--mat-sys-body-large);
+    background: var(--mat-sys-warn-fixed);
+    color: var(--mat-sys-on-warn-fixed);
+}

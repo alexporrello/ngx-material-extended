@@ -1,0 +1,86 @@
+$default-typography-config: (
+    headline-1: (
+        font-size: 35px,
+        line-height: 35px,
+        font-weight: 300,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    headline-2: (
+        font-size: 30px,
+        line-height: 30px,
+        font-weight: 300,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    headline-3: (
+        font-size: 25px,
+        line-height: 25px,
+        font-weight: 400,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    headline-4: (
+        font-size: 20px,
+        line-height: 20px,
+        font-weight: 400,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    headline-5: (
+        font-size: 18px,
+        line-height: 18px,
+        font-weight: 400,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    headline-6: (
+        font-size: 18px,
+        line-height: 32px,
+        font-weight: 300,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    subtitle-1: (
+        font-size: 16px,
+        line-height: 28px,
+        font-weight: 400,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    subtitle-2: (
+        font-size: 15px,
+        line-height: 24px,
+        font-weight: 400,
+        font-family: 'Open Sans',
+        letter-spacing: 0
+    ),
+    body-1: (
+        font-size: 14px,
+        line-height: 20px,
+        font-weight: 400,
+        font-family: 'Roboto',
+        letter-spacing: 0
+    ),
+    body-2: (
+        font-size: 14px,
+        line-height: 20px,
+        font-weight: 500,
+        font-family: 'Roboto',
+        letter-spacing: 0
+    ),
+    caption: (
+        font-size: 12px,
+        line-height: 20px,
+        font-weight: 400,
+        font-family: 'Roboto',
+        letter-spacing: 0
+    ),
+    button: (
+        font-size: 14px,
+        line-height: 14px,
+        font-weight: 500,
+        font-family: 'Roboto',
+        letter-spacing: 0
+    )
+);

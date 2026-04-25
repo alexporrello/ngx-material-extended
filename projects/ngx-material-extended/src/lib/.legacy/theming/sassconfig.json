@@ -1,0 +1,8 @@
+{
+    "$schema": "../../../../../../../sass-config/schema/sassconfig.schema.json",
+    "entryFile": "theme.scss",
+    "outFile": ".theme.css",
+    "resolve": [
+        "../../../../node_modules"
+    ]
+}

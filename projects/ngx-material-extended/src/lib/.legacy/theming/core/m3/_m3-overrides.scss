@@ -1,0 +1,64 @@
+@use '@angular/material' as mat;
+@use 'm3-sys' as sys;
+
+html {
+    --mat-sys-corner-extra-small: 8px;
+}
+
+.cdk-overlay-pane {
+    width: fit-content !important;
+}
+
+.mat-standard-chip {
+    padding: 0.5em 0.85em;
+    min-height: 2.5em;
+}
+
+//
+// Select
+//
+
+.mat-mdc-select-panel {
+    padding: 0 !important;
+    border-radius: 8px !important;
+}
+
+//
+// Menu
+//
+
+.mat-mdc-menu-item .mat-icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.mat-mdc-menu-item-text {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.mat-mdc-select-trigger {
+    display: flex;
+    gap: 8px;
+}
+
+// Buttons/Icons
+
+.mat-mdc-button > .mat-icon {
+    margin: 0 !important;
+}
+
+.mat-icon {
+    &__button {
+        border-radius: 100%;
+        padding: 4px;
+        transition: 250ms ease;
+    }
+}
+
+mat-option mat-icon img {
+    width: 24px;
+    height: 24px;
+    border-radius: sys.$corner-full;
+}

@@ -1,0 +1,119 @@
+elm-date-picker {
+    width: 100%;
+
+    .mat-subheading-2 {
+        text-align: center;
+    }
+
+    #years {
+        font-family: 'Roboto', Helvetica, sans-serif;
+        display: flex;
+        margin: 1rem 0.5rem;
+    }
+
+    #months {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1rem;
+        gap: 0.25rem;
+        border-top: solid 1px var(--background-darker-color);
+        border-bottom: solid 1px var(--background-darker-color);
+
+        .month {
+            display: flex;
+            flex: 1 0 21%;
+        }
+    }
+
+    #years,
+    #months {
+        button {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            font-family: 'Roboto';
+            margin: auto;
+            border: solid 1px transparent;
+        }
+
+        .selected {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+    }
+
+    #days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        padding: 1rem 0.25rem 0.5rem 0.25rem;
+        font-size: 0.8rem;
+
+        .header {
+            font-family: 'Roboto', Helvetica, sans-serif;
+            text-transform: capitalize;
+            text-align: center;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            font-size: 0.7rem;
+        }
+
+        .day {
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            display: flex;
+            cursor: pointer;
+            transition:
+                background 100ms ease-out,
+                color 100ms ease-out;
+
+            span {
+                margin: auto;
+            }
+        }
+
+        .day:hover {
+            background: var(--background-darker-color);
+            font-weight: 500;
+            transition:
+                background 100ms ease-out,
+                color 100ms ease-out;
+        }
+
+        .selected {
+            color: var(--primary-color);
+            background: var(--primary-lighter-color);
+            font-weight: 500;
+            transition:
+                background 100ms ease-out,
+                color 100ms ease-out;
+        }
+
+        .otherMonth {
+            color: var(--background-darkest-color);
+        }
+    }
+
+    #actions {
+        font-family: 'Roboto', Helvetica, sans-serif;
+        text-transform: capitalize;
+        display: flex;
+
+        .cancel {
+            margin-left: auto;
+        }
+
+        button {
+            padding: 0.25rem;
+            margin: 0.25rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            line-height: 0.75rem;
+        }
+    }
+
+    button {
+        border: 0;
+        background: inherit;
+        cursor: pointer;
+    }
+}

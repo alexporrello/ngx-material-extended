@@ -1,0 +1,27 @@
+<div
+    class="heading"
+    [innerHTML]="opts.headingText"></div>
+<mat-icon
+    [class.elm-gradient-icon]="iconColor === 'primary'"
+    [class.elm-gradient-icon-accent]="iconColor === 'accent'"
+    [class.elm-gradient-icon-warn]="iconColor === 'warn'">
+    {{ icon }}
+</mat-icon>
+<div
+    class="subheading"
+    *ngIf="opts.detailsText"
+    [innerHTML]="opts.detailsText"></div>
+<div class="actions">
+    <button
+        elmButton
+        [color]="cancelButtonColor"
+        (click)="cancel()">
+        {{ cancelButtonText }}
+    </button>
+    <button
+        elmButton
+        [color]="confirmButtonColor"
+        (click)="confirm()">
+        {{ confirmButtonText }}
+    </button>
+</div>

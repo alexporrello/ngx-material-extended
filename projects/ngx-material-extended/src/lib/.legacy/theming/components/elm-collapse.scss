@@ -1,0 +1,30 @@
+@use '../core' as core;
+
+.elm-collapse {
+    transition: height 500ms ease;
+    background: var(--mat-sys-background);
+    flex-shrink: 0;
+
+    &__body {
+        height: fit-content;
+
+        &--hide {
+            display: none;
+        }
+    }
+
+    &__collapsed {
+        overflow: hidden;
+    }
+
+    &__expandButton {
+        transition: transform 250ms ease;
+        height: 24px;
+        width: 24px;
+        cursor: pointer;
+
+        &--show {
+            transform: rotate(180deg);
+        }
+    }
+}

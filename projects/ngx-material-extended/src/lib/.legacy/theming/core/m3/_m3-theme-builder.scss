@@ -1,0 +1,257 @@
+@use '@angular/material' as mat;
+@use 'sass:map' as map;
+
+@use 'm3-symbols' as symbols;
+@use 'm3-icons' as icons;
+@use 'm3-default-palette' as default;
+@use 'm3-sys' as sys;
+@use 'm3-custom-palettes' as cpal;
+
+@use 'overrides';
+
+/// @access private
+@function _m3-palette-builder($palettes) {
+    $_rest: (
+        secondary: map.get($palettes, secondary),
+        neutral: map.get($palettes, neutral),
+        neutral-variant: map.get($palettes, neutral-variant),
+        error: map.get($palettes, error)
+    );
+
+    @return (
+        primary: map.merge(map.get($palettes, primary), $_rest),
+        tertiary: map.merge(map.get($palettes, tertiary), $_rest)
+    );
+}
+
+/// @access private
+$_default-theme-options: (
+    overrides: (),
+    typography: 'Roboto',
+    state: (
+        success: cpal.$elm-default-success-palette,
+        warn: cpal.$elm-default-warn-palette,
+        failure: cpal.$elm-default-failure-palette
+    )
+);
+
+///
+/// @param {map} $palettes _(optional)_ An Angular M3 palette.
+/// You can generate an M3 palette via the Angular CLI: `ng generate @angular/material:m3-theme`.
+/// See the _M3 Palette Structure_ section below for more information.
+/// @param {map} $config _(optional)_ Bundles additional Angular Materials and Elements features:
+///
+///
+/// - `$config.typography`: Specify the m3 font
+///     - optional: `true`
+///     - type:     `string`
+///     - default:  `Roboto`
+/// - `$config.overrides`: Override m3 variables (i.e. `background`, `on-background`, `outline`)
+///     - optional: `true`
+///     - type:     `map`
+/// - `$config.state`: Override the default state palettes (success, warn, failure).
+///     - optional: `true`
+///     - fields:
+///         - `$config.state.success`
+///             - type: `map`
+///         - `$config.state.warn`
+///             - type: `map`
+///         - `$config.state.failure`
+///             - type: `map`
+/// - `$config.symbols`: Load Angular Symbols
+///     - optional: `true`
+///     - fields:
+///         - `$config.symbols.style`
+///             - type:    `string`
+///             - default: `'rounded'`
+///             - options: `'rounded'` | `'sharp'` | `'outlined'`
+///         - `$config.symbols.fill`
+///             - type:    `number`
+///             - default: `0` (false)
+///             - options: `0` | `1`
+///         - `$config.symbols.weight`
+///             - type:    `number`
+///             - default: `100`
+///             - options: `100` | `200` | `300` | `400` | `500` | `600` | `700`
+///         - `$config.symbols.grad`: The emphasis (boldness) of the icon.
+///             - type:    `number`
+///             - default: `0`
+///             - options: `-25` | `0` | `200`
+///         - `$config.symbols.opsz`
+///             - type:    `number`
+///             - default: `24`
+///             - options: `20` | `24` | `40` | `48`
+///
+/// ### M3 Palette Structure
+///
+/// ```
+/// $my-palette: (
+///     primary: (
+///         0: #000000,
+///         10: #hex_code,
+///         20: #hex_code,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff
+///     ),
+///     secondary: (
+///         0: #000000,
+///         10: #hex_code,
+///         20: #hex_code,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff
+///     ),
+///     tertiary: (
+///         0: #000000,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff
+///     ),
+///     neutral: (
+///         0: #000000,
+///         10: #hex_code,
+///         20: #hex_code,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff,
+///         4: #hex_code,
+///         6: #hex_code,
+///         12: #hex_code,
+///         17: #hex_code,
+///         22: #hex_code,
+///         24: #hex_code,
+///         87: #hex_code,
+///         92: #hex_code,
+///         94: #hex_code,
+///         96: #hex_code,
+///     ),
+///     neutral-variant: (
+///         0: #000000,
+///         10: #hex_code,
+///         20: #hex_code,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff
+///     ),
+///     error: (
+///         0: #000000,
+///         10: #hex_code,
+///         20: #hex_code,
+///         ...
+///         90: #hex_code,
+///         95: #hex_code,
+///         98: #hex_code,
+///         99: #hex_code,
+///         100: #ffffff
+///     )
+/// ```
+///
+/// ### Config
+///
+/// ```
+/// $theme-options: (
+///    // Override m3 css variables. Defaults to an empty map.
+///    overrides: (
+///       primary: #hex_code,
+///       on-primary: #hex_code,
+///       outline: #hex_code
+///    ),
+///    // Your preferred font family. Defaults to Roboto.
+///    typography: 'Roboto',
+///    // Include material symbols styles
+///    symbols: (
+///       style: 'rounded', // The style of the icon. One of ['rounded' | 'sharp' | 'outlined'],
+///       fill: 0, // The fill state of the icon. One of [0 | 1].
+///       weight: 400, // The weight of the icon outline. One of [100 | 200 | 300 | 400 | 500 | 600 | 700].
+///       grad: -25 | 0 | 200, // optional
+///       opsz: 20 | 24 | 40 | 48 // optional
+///    )
+/// );
+/// ```
+/// @output
+@mixin m3-theme-builder(
+    $palettes: default.$m3-default-palette,
+    $config: $_default-theme-options
+) {
+    // Merge the default options
+    $_options: map.deep-merge($_default-theme-options, $config);
+
+    // Check for load material symbols
+    $symbols-config: map.get($config, 'symbols');
+    @if ($symbols-config != null) {
+        @include symbols.load-material-symbols-from-config($symbols-config);
+    }
+
+    // Load material icons
+    @include icons.load-material-icons();
+
+    // Load the e2 state palettes
+    @include cpal.elm-palette-factory(
+        map.get($_options, 'state', 'success'),
+        'success'
+    );
+    @include cpal.elm-palette-factory(
+        map.get($_options, 'state', 'warn'),
+        'warn'
+    );
+    @include cpal.elm-palette-factory(
+        map.get($_options, 'state', 'failure'),
+        'failure'
+    );
+
+    $m3-palettes: _m3-palette-builder($palettes);
+    $typography: map.get($_options, 'typography');
+    $overrides: map.get($_options, 'overrides');
+
+    html {
+        color-scheme: light;
+
+        @include mat.theme(
+            (
+                color: (
+                    primary: map.get($m3-palettes, 'primary'),
+                    tertiary: map.get($m3-palettes, 'tertiary')
+                ),
+                typography: $typography,
+                density: 0
+            )
+        );
+
+        @include mat.theme-overrides($overrides);
+
+        body,
+        app-root {
+            @include sys.body-large();
+
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: sys.$background;
+            color: sys.$on-background;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .darkMode {
+        color-scheme: dark;
+    }
+}

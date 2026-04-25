@@ -1,7 +1,16 @@
-$background: var(--mat-sys-surface-variant);
+html {
+    --mex-sys-panel-thumb: var(--mat-sys-outline);
+    --mex-sys-panel-corner: var(--mat-sys-corner-large, 16px);
+    --mex-sys-panel-surface: var(--mat-sys-surface);
+    --mex-sys-clip: var(--mat-sys-surface-variant);
+}
 
-$thumb-color: var(--mat-sys-outline);
-$track-color: $background;
+$corner: var(--mex-sys-panel-corner);
+$surface: var(--mex-sys-panel-surface);
+$clip: var(--mex-sys-clip);
+
+$thumb-color: var(--mex-sys-panel-thumb);
+$track-color: $clip;
 $width: 12px;
 
 mex-panel {
@@ -20,39 +29,19 @@ mex-panel {
         height: 100%;
         position: relative;
 
-        &::-webkit-scrollbar {
-            width: $width;
-            height: $width;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background: $thumb-color;
-            border: solid 4px $track-color;
-
-            &:hover {
-                border: solid 2px $track-color;
-            }
-        }
-
-        &::-webkit-scrollbar-corner,
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
         &__content {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            background: var(--mat-sys-surface);
+            background: $surface;
         }
 
         &__cap {
             position: sticky;
             display: flex;
-            min-height: var(--mat-sys-corner-large);
+            min-height: $corner;
             width: 100%;
-            background: var(--mat-sys-surface-variant);
+            background: $clip;
 
             &.top {
                 top: 0;
@@ -63,125 +52,84 @@ mex-panel {
             }
 
             &--content {
-                background: var(--mat-sys-surface);
+                background: $surface;
                 width: 100%;
                 height: 100%;
                 display: flex;
 
                 &.top {
-                    border-top-left-radius: var(--mat-sys-corner-large);
-                    border-top-right-radius: var(--mat-sys-corner-large);
+                    border-top-left-radius: $corner;
+                    border-top-right-radius: $corner;
                 }
 
                 &.end {
-                    border-bottom-left-radius: var(--mat-sys-corner-large);
-                    border-bottom-right-radius: var(--mat-sys-corner-large);
+                    border-bottom-left-radius: $corner;
+                    border-bottom-right-radius: $corner;
                 }
             }
         }
     }
 
-    $offset: var(--mat-sys-corner-large);
-    $negative-offset: calc(var(--mat-sys-corner-large) * -1);
-
-    // .overlay-corners {
-    //     width: 64px;
-    //     position: absolute;
-    //     z-index: 3;
-    //     pointer-events: none;
-    //     fill: $background;
-    //     z-index: 99;
-
-    //     &.top-left {
-    //         top: 0;
-    //     }
-
-    //     &.top-right {
-    //         top: 0;
-    //         right: 12px;
-    //         z-index: 99;
-    //     }
-
-    //     &.bottom-right {
-    //         bottom: 12px;
-    //         right: 12px;
-    //     }
-
-    //     &.bottom-left {
-    //         bottom: 12px;
-    //     }
-    // }
+    .mex-panel-body-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
 
     .rounded {
-        width: var(--mat-sys-corner-large);
-        height: var(--mat-sys-corner-large);
+        width: $corner;
+        height: $corner;
         position: absolute;
         z-index: 3;
+        overflow: hidden;
+
+        $offset: $corner;
+        $negative-offset: calc($corner * -1);
 
         &.top-left {
-            border-top-left-radius: var(--mat-sys-corner-large);
             top: 0;
             left: 0;
+            border-top-left-radius: $corner;
         }
 
         &.top-right {
-            border-top-right-radius: var(--mat-sys-corner-large);
             top: 0;
             right: 12px;
-            box-shadow: $offset $negative-offset 0px $offset
-                var(--mat-sys-surface-variant);
+            display: flex;
+
+            .clip {
+                width: 100%;
+                height: 100%;
+                border-top-right-radius: $corner;
+                box-shadow: $offset $negative-offset 0px $offset $clip;
+            }
         }
 
         &.bottom-right {
-            border-bottom-right-radius: var(--mat-sys-corner-large);
             bottom: 12px;
             right: 12px;
-            box-shadow: $offset $offset 0px $offset
-                var(--mat-sys-surface-variant);
+            display: flex;
+
+            .clip {
+                width: 100%;
+                height: 100%;
+                border-bottom-right-radius: $corner;
+                box-shadow: $offset $offset 0px $offset $clip;
+            }
         }
 
         &.bottom-left {
-            border-bottom-left-radius: var(--mat-sys-corner-large);
             bottom: 12px;
             left: 0;
-            box-shadow: $negative-offset $offset 0px $offset
-                var(--mat-sys-surface-variant);
+            box-shadow: $negative-offset $offset 0px $offset $clip;
+
+            .clip {
+                width: 100%;
+                height: 100%;
+                border-bottom-left-radius: $corner;
+                box-shadow: $offset $offset 0px $offset $clip;
+            }
         }
-    }
-}
-
-/* The static rounded frame */
-.frame-container {
-    border-radius: var(--mat-sys-corner-large);
-    overflow: hidden; /* Clips the square scrollbar to the curve */
-    background: var(--mat-sys-surface-variant);
-}
-
-/* The actual scrolling area */
-.scrolling-content {
-    width: 100%;
-    height: 100%;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    box-sizing: border-box;
-
-    &::-webkit-scrollbar {
-        width: $width;
-        height: $width;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 10px;
-        background: $thumb-color;
-        border: solid 4px $track-color;
-
-        &:hover {
-            border: solid 2px $track-color;
-        }
-    }
-
-    &::-webkit-scrollbar-corner,
-    &::-webkit-scrollbar-track {
-        background: transparent;
     }
 }

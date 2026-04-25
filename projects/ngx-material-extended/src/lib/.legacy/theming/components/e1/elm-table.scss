@@ -1,0 +1,121 @@
+@use '@angular/material' as mat;
+@use '../../core' as core;
+
+@use './table/table-vars' as var;
+@use './table/table-section' as sect;
+@use './table/table-border' as border;
+@use './table/table-cell' as cell;
+@use './table/table-row' as tr;
+
+body {
+    --thead-height: 48px;
+}
+
+.scroller {
+    width: 100%;
+    overflow-x: auto;
+    position: sticky;
+
+    &__thumb {
+        height: 0.1px;
+    }
+}
+
+.elm-table-row {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.elm-table {
+    width: 100%;
+    height: fit-content;
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 4px;
+    background: var.$z1;
+
+    th {
+        font-weight: 500;
+    }
+
+    &__full-span-header {
+        display: flex;
+        align-items: center;
+        font-family: 'Google Sans', Roboto;
+        font-weight: 500;
+        font-size: 16px;
+
+        & > span:first-child {
+            justify-content: left;
+            flex-grow: 1;
+        }
+    }
+
+    tr,
+    .elm-table-row {
+        @include tr.table-row;
+    }
+
+    th,
+    td,
+    .elm-table-cell {
+        @include cell.all-cells;
+    }
+
+    thead {
+        @include sect.head;
+        @include sect.head-foot;
+    }
+
+    tbody {
+        @include sect.body;
+    }
+
+    tfoot {
+        @include sect.foot;
+        @include sect.head-foot;
+    }
+
+    &__border {
+        @include border.bordered;
+    }
+
+    &__no-border {
+        @include border.borderless;
+    }
+
+    &__no-results {
+        font: var(--mat-sys-body-large);
+        padding: 12px;
+    }
+
+    &__selected {
+        background: var(--primary-lighter-color) !important;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+}
+
+// tfoot {
+//     tr:first-child {
+//         clip-path: polygon(0 -20%, 100% -20%, 100% 100%, 0 100%);
+//         box-shadow:
+//             0px -3px 1px -2px rgba(0, 0, 0, 0.2),
+//             0px -2px 2px 0px rgba(0, 0, 0, 0.14),
+//             0px -1px 5px 0px rgba(0, 0, 0, 0.12);
+//         // box-shadow: 0px -2px 1px -1px rgba(0, 0, 0, 0.2),
+//         //     0px -1px 1px 0px rgba(0, 0, 0, 0.14),
+//         //     0px -1px 3px 0px rgba(0, 0, 0, 0.12);
+//     }
+// }
+
+// thead {
+//     tr:last-child {
+//         clip-path: polygon(0 0, 100% 0, 100% 110%, 0 110%);
+//     }
+// }

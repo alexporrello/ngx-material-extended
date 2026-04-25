@@ -1,0 +1,59 @@
+@use 'sass:map';
+@use 'sass:color' as color;
+@use '@angular/material' as mat;
+
+//
+// Colors
+//
+
+$on-success: var(--mat-sys-on-success);
+$on-success-container: var(--mat-sys-on-success-container);
+$on-success-fixed: var(--mat-sys-on-success-fixed);
+$on-success-fixed-variant: var(--mat-sys-on-success-fixed-variant);
+$success: var(--mat-sys-success);
+$success-container: var(--mat-sys-success-container);
+$success-fixed: var(--mat-sys-success-fixed);
+$success-fixed-dim: var(--mat-sys-success-fixed-dim);
+
+$on-warn: var(--mat-sys-on-warn);
+$on-warn-container: var(--mat-sys-on-warn-container);
+$on-warn-fixed: var(--mat-sys-on-warn-fixed);
+$on-warn-fixed-variant: var(--mat-sys-on-warn-fixed-variant);
+$warn: var(--mat-sys-warn);
+$warn-container: var(--mat-sys-warn-container);
+$warn-fixed: var(--mat-sys-warn-fixed);
+$warn-fixed-dim: var(--mat-sys-warn-fixed-dim);
+
+//
+// heights
+//
+
+$toolbar-height: 56px;
+
+html {
+    --elm-sys-toolbar-height: #{$toolbar-height};
+}
+
+//
+// padding
+//
+
+$padding-extra-small: 4px;
+$padding-small: 6px;
+$padding-medium: 8px;
+$padding-large: 12px;
+$padding-extra-large: 16px;
+
+$padding-container-small: $padding-extra-small $padding-large;
+$padding-container-medium: $padding-medium $padding-extra-large;
+
+html {
+    --elm-sys-padding-extra-small: #{$padding-extra-small};
+    --elm-sys-padding-small: #{$padding-small};
+    --elm-sys-padding-medium: #{$padding-medium};
+    --elm-sys-padding-large: #{$padding-large};
+    --elm-sys-padding-extra-large: #{$padding-extra-large};
+
+    --elm-sys-padding-container-small: #{$padding-container-small};
+    --elm-sys-padding-container-medium: #{$padding-container-medium};
+}

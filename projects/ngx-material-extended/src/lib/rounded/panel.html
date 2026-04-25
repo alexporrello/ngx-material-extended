@@ -1,10 +1,15 @@
-<!-- <div class="rounded top-left"></div>
-<div class="rounded top-right"></div>
-<div class="rounded bottom-left"></div>
-<div class="rounded bottom-right"></div> -->
+@if (!hasHeader()) {
+    <div class="rounded top-left"> </div>
+    <div class="rounded top-right">
+        <div class="clip"></div>
+    </div>
+}
 
-<!-- <div class="mex-panel"> -->
-<!-- <div class="mex-panel__content"> -->
+<div class="rounded bottom-left">
+    <div class="clip"></div>
+</div>
+<div class="rounded bottom-right">
+    <div class="clip"></div>
+</div>
+
 <ng-content></ng-content>
-<!-- </div> -->
-<!-- </div> -->

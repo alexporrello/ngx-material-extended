@@ -1,0 +1,10 @@
+@use '../core' as core;
+
+@mixin elm-border() {
+    border: solid 1px var(--mat-sys-outline);
+    border-radius: var(--mat-sys-corner-large);
+}
+
+.elm-border {
+    @include elm-border();
+}

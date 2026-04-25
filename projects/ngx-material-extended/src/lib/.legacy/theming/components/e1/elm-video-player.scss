@@ -1,0 +1,14 @@
+.elm-video-player {
+    width: calc(100% - 2px);
+    height: 100%;
+    margin: auto;
+    background: var(--background-lighter-color);
+    border: solid 1px var(--background-darker-color);
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}

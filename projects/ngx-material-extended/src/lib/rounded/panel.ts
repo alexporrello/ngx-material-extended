@@ -7,6 +7,7 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import { MexPanelBody, MexPanelHeader } from 'ngx-material-extended';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
     selector: 'mex-panel',
@@ -15,8 +16,12 @@ import { MexPanelBody, MexPanelHeader } from 'ngx-material-extended';
     encapsulation: ViewEncapsulation.None
 })
 export class MexPanel {
+    /** @deprecated */
     public readonly showTopCap = input(true);
+    /** @deprecated */
     public readonly showEndCap = input(true);
+
+    public readonly showContent = input(true);
 
     public readonly header = contentChild(MexPanelHeader);
     public readonly body = contentChild(MexPanelBody);
@@ -31,6 +36,12 @@ export class MexPanel {
             const body = this.body();
             if (!body) return;
             body.panelHasHeader.set(this.header() !== undefined);
+        });
+
+        effect(() => {
+            const body = this.body();
+            if (!body) return;
+            body.showContent.set(this.showContent());
         });
     }
 }
