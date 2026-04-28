@@ -38,6 +38,7 @@ export function paramGroup<const TConfig extends Record<string, Param>>(
 
     subscriptions.add(
         route.queryParams.subscribe((params) => {
+            console.log(params);
             Object.entries(parseParams(params, config)).forEach(([k, v]) => {
                 if (controls[k]) {
                     controls[k].setValue(v, { emitEvent: false });
