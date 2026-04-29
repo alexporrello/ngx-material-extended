@@ -10,6 +10,12 @@ mex-form-group {
         border-right: solid 1px var(--mat-sys-outline);
     }
 
+    button:has(+ mat-select),
+    button:has(+ input),
+    button:has(+ button) {
+        border-right: solid 1px var(--mat-sys-outline);
+    }
+
     .mat-mdc-select {
         padding: var(--mat-sys-corner-small);
         font: var(--mat-sys-body-medium) !important;

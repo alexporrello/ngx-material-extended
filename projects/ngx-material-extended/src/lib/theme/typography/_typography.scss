@@ -1,0 +1,71 @@
+@use 'sass:map' as map;
+@use '@angular/material' as mat;
+
+@use 'typography-config' as conf;
+
+@function get-mex-typography-level($level, $config) {
+    @return mat.m2-define-typography-level(
+        map.get($config, $level, 'font-size'),
+        map.get($config, $level, 'line-height'),
+        map.get($config, $level, 'font-weight'),
+        map.get($config, $level, 'font-family'),
+        map.get($config, $level, 'letter-spacing')
+    );
+}
+
+@function mex-typography-config($_config: conf.$default-typography-config) {
+    $config: map.deep-merge(conf.$default-typography-config, $_config);
+    @return mat.m2-define-typography-config(
+        $headline-1: get-mex-typography-level('headline-1', $config),
+        $headline-2: get-mex-typography-level('headline-2', $config),
+        $headline-3: get-mex-typography-level('headline-3', $config),
+        $headline-4: get-mex-typography-level('headline-4', $config),
+        $headline-5: get-mex-typography-level('headline-5', $config),
+        $headline-6: get-mex-typography-level('headline-6', $config),
+        $subtitle-1: get-mex-typography-level('subtitle-1', $config),
+        $subtitle-2: get-mex-typography-level('subtitle-2', $config),
+        $body-1: get-mex-typography-level('body-1', $config),
+        $body-2: get-mex-typography-level('body-2', $config),
+        $caption: get-mex-typography-level('caption', $config),
+        $button: get-mex-typography-level('button', $config)
+    );
+}
+
+@function mex-typography-font-family-config(
+    $brand,
+    $brand-alt: $brand,
+    $brand-style: sans-serif,
+    $body: $brand,
+    $body-alt: $body,
+    $font-alt: 'Arial',
+    $body-style: sans-serif
+) {
+    $_brand: $brand, $brand-alt, $font-alt, $brand-style;
+    $_body: $body, $body-alt, $font-alt, $body-style;
+
+    // prettier-ignore
+    $config: (
+        headline-1: ( font-family: $_brand ),
+        headline-2: ( font-family: $_brand ),
+        headline-3: ( font-family: $_brand ),
+        headline-4: ( font-family: $_brand ),
+        headline-5: ( font-family: $_brand ),
+        headline-6: ( font-family: $_brand ),
+        subtitle-1: ( font-family: $_brand ),
+        subtitle-2: ( font-family: $_brand ),
+        body-1: ( font-family: $_body ),
+        body-2: ( font-family: $_brand ),
+        caption: ( font-family: $_brand ),
+        button: ( font-family: $_brand )
+    );
+
+    @return mex-typography-config($config);
+}
+
+@mixin mex-typography-level($config, $level) {
+    font-size: map.get($config, $level, 'font-size');
+    line-height: map.get($config, $level, 'line-height');
+    font-weight: map.get($config, $level, 'font-weight');
+    font-family: map.get($config, $level, 'font-family');
+    letter-spacing: map.get($config, $level, 'letter-spacing');
+}

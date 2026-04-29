@@ -1,0 +1,9 @@
+@use 'typography' as mex;
+
+$mex-typography: mex.mex-typography-font-family-config(
+    $brand: 'Google Sans',
+    $brand-alt: 'Open Sans',
+    $font-alt: 'Arial'
+);
+
+@include sym.load-material-symbols('outlined', 0, 100, 0, 24);
