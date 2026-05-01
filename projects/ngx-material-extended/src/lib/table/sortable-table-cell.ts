@@ -3,13 +3,19 @@ import {
     computed,
     effect,
     input,
-    model,
     output,
-    signal
+    signal,
+    ViewEncapsulation
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MexSymbol } from '../symbol/symbol';
+import { animate, style, transition, trigger } from '@angular/animations';
+
+export declare interface MexTableHeader<T> {
+    key: keyof T;
+    title: string;
+}
 
 export declare type MexSortableTableCellIcon =
     | 'arrow_downward'
@@ -20,11 +26,32 @@ export declare type MexSortableTableCellIcon =
     templateUrl: './sortable-table-cell.html',
     styleUrl: './sortable-table-cell.scss',
     host: {
-        class: 'mex-table-cell mex-table-cell-base',
+        class: 'mex-table-cell mex-table-cell-base mex-sortable-table-cell',
         '(mouseenter)': 'hovered.set(true)',
         '(mouseleave)': 'hovered.set(false)'
     },
-    imports: [MatSelect, MatOption, FormsModule, ReactiveFormsModule, MexSymbol]
+    imports: [
+        MatSelect,
+        MatOption,
+        FormsModule,
+        ReactiveFormsModule,
+        MexSymbol
+    ],
+    encapsulation: ViewEncapsulation.None,
+    animations: [
+        trigger('minimize-icons', [
+            transition(':enter', [
+                style({ width: '0' }),
+                animate(`250ms cubic-bezier(0.8,0.3,0,1)`)
+            ]),
+            transition(':leave', [
+                animate(
+                    `250ms cubic-bezier(0.8,0.3,0,1)`,
+                    style({ width: '0' })
+                )
+            ])
+        ])
+    ]
 })
 export class MexSortableTableCell {
     public readonly _contentClass = input<string>('', {
@@ -46,16 +73,23 @@ export class MexSortableTableCell {
             const filterVals = this.filterVals();
             this._filterVals.emit(filterVals);
         });
+
+        effect(() => {
+            this.filterOpts();
+            this.filterVals.set([]);
+        });
     }
 
     public readonly contentClass = computed(() => {
         return 'mex-table-cell-content ' + this._contentClass();
     });
 
-    public readonly showFilterIcon = computed(() => {
-        if ((this.filterOpts()?.length ?? 0) === 0) return false;
-        if (this.filtering()) return true;
+    public readonly isFiltered = computed(() => {
+        return (this.filterVals() ?? []).length > 0;
+    });
 
-        return this.hovered() || this.filterVals().length > 0;
+    public readonly showFilterIcon = computed(() => {
+        if (!this.filterOpts()) return false;
+        return this.hovered() || this.isFiltered() || this.filtering();
     });
 }

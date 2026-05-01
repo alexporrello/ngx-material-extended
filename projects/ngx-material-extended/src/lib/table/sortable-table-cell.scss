@@ -1,26 +1,60 @@
-.sortable-table-cell-title {
-    flex-grow: 1;
-}
-
-mex-symbol {
+.mex-sortable-table-cell {
+    user-select: none;
     cursor: pointer;
-}
 
-.hide-mat-select {
-    width: 0px;
-    height: 0px;
-    overflow: hidden;
-}
+    &__content {
+        display: flex;
+    }
 
-.hide-input {
-    visibility: hidden;
-}
+    &__title {
+        flex-grow: 1;
+        height: 32px;
+        align-content: center;
+        white-space: nowrap;
+    }
 
-button {
-    outline: none;
-    border: none;
-    background: transparent;
-    padding: 0;
-    margin: 0;
-    height: 24px;
+    &__actions {
+        display: flex;
+        padding-left: 8px;
+        overflow: hidden;
+
+        &--button-wrapper {
+            width: fit-content;
+            overflow: hidden;
+        }
+    }
+
+    &__select {
+        width: 0px;
+        height: 0px;
+        overflow: hidden;
+
+        &--input {
+            visibility: hidden;
+        }
+    }
+
+    button {
+        outline: none;
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        height: 24px;
+
+        mex-symbol {
+            color: var(--mex-table-header-color);
+            cursor: pointer;
+        }
+    }
+
+    .filtered {
+        color: var(--mat-sys-primary);
+    }
+
+    &:hover {
+        .filter-button {
+            display: block;
+        }
+    }
 }

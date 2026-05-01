@@ -24,6 +24,7 @@ mex-panel-header {
         border-top-right-radius: var(--mat-sys-corner-large);
         padding: 0 0 0 var(--mat-sys-corner-large);
         margin-right: 12px;
+        position: relative;
 
         &__title {
             display: flex;

@@ -1,8 +1,29 @@
-import { computed, Signal, signal, WritableSignal } from '@angular/core';
+import {
+    computed,
+    effect,
+    Signal,
+    signal,
+    WritableSignal
+} from '@angular/core';
 
 export function tableDataSource<T extends object>(
     _data: WritableSignal<T[] | undefined> | Signal<T[] | undefined>
 ) {
+    const filterVals = signal<Record<keyof T, any[]>>({} as any);
+    const sortKey = signal<keyof T | undefined>(undefined);
+    const sortDir = signal<'asc' | 'desc' | null>(null);
+
+    effect(() => {
+        _data();
+        filterVals.set({} as any);
+        sortKey.set(undefined);
+        sortDir.set(null);
+    });
+
+    //
+    // Filter Logic
+    //
+
     const filterOpts = computed(() => {
         const data = _data();
         if (!data) return {};
@@ -29,18 +50,6 @@ export function tableDataSource<T extends object>(
         );
     });
 
-    const filterVals = signal<Record<keyof T, any[]>>({} as any);
-    const onDataFilter = (key: keyof T, vals: any[]) => {
-        filterVals.update((v) => {
-            if (vals.length === 0) {
-                delete v[key];
-            } else {
-                v[key] = vals;
-            }
-            return { ...v };
-        });
-    };
-
     const filteredData = computed(() => {
         const data = _data();
         if (!data) return [];
@@ -57,8 +66,51 @@ export function tableDataSource<T extends object>(
         });
     });
 
-    const sortKey = signal<keyof T | undefined>(undefined);
-    const sortDir = signal<'asc' | 'desc' | null>(null);
+    //
+    // Sorting Logic
+    //
+
+    const sortedData = computed(() => {
+        const data = filteredData();
+        if (!data) return;
+
+        const sortCol = sortKey();
+        if (!sortCol) return data;
+
+        const asc = (sortDir() ?? 'asc') === 'asc';
+
+        return [...data].sort((a, b) => {
+            const result = (a[sortCol] + '').localeCompare(b[sortCol] + '');
+            if (asc) return result;
+            return result * -1;
+        });
+    });
+
+    const sortIcon = computed(() => {
+        const dir = sortDir();
+        if (!dir) return null;
+
+        return dir === 'asc' ? 'arrow_downward' : 'arrow_upward';
+    });
+
+    const displayedResultsCount = computed(() => {
+        return sortedData()?.length ?? 0;
+    });
+
+    //
+    // Helper Functions
+    //
+
+    const onDataFilter = (key: keyof T, vals: any[]) => {
+        filterVals.update((v) => {
+            if (vals.length === 0) {
+                delete v[key];
+            } else {
+                v[key] = vals;
+            }
+            return { ...v };
+        });
+    };
 
     const onSort = (key: keyof T) => {
         const _sortKey = sortKey();
@@ -78,31 +130,6 @@ export function tableDataSource<T extends object>(
 
         sortDir.set('desc');
     };
-    const sortedData = computed(() => {
-        const data = filteredData();
-        if (!data) return;
-
-        const sortCol = sortKey();
-        if (!sortCol) return data;
-
-        const asc = (sortDir() ?? 'asc') === 'asc';
-
-        return [...data].sort((a, b) => {
-            const result = (a[sortCol] + '').localeCompare(b[sortCol] + '');
-            if (asc) return result;
-            return result * -1;
-        });
-    });
-    const sortIcon = computed(() => {
-        const dir = sortDir();
-        if (!dir) return null;
-
-        return dir === 'asc' ? 'arrow_downward' : 'arrow_upward';
-    });
-
-    const displayedResultsCount = computed(() => {
-        return sortedData()?.length ?? 0;
-    });
 
     return {
         _data,

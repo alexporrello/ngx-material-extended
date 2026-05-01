@@ -1,3 +1,7 @@
 <div class="mex-panel-header">
     <ng-content></ng-content>
+
+    @if (loading()) {
+        <mex-spinner @mex-spinner-animation></mex-spinner>
+    }
 </div>

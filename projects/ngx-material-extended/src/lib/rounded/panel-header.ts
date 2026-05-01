@@ -1,12 +1,18 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, input, ViewEncapsulation } from '@angular/core';
+import { MexSpinner, spinnerAnimation } from '../spinner/spinner';
+import { trigger } from '@angular/animations';
 
 @Component({
     selector: 'mex-panel-header',
     templateUrl: './panel-header.html',
     styleUrl: './panel-header.scss',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    imports: [MexSpinner],
+    animations: [spinnerAnimation]
 })
-export class MexPanelHeader {}
+export class MexPanelHeader {
+    public readonly loading = input(false);
+}
 
 @Component({
     selector: 'mex-panel-header-title',
