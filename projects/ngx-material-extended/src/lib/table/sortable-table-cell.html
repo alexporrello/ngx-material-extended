@@ -26,7 +26,7 @@
                 </span>
             }
 
-            @if (isFiltering) {
+            @if (isFiltering && !disableFilter()) {
                 <span
                     @minimize-icons
                     class="mex-sortable-table-cell__actions--button-wrapper">

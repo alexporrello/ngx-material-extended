@@ -1,0 +1,15 @@
+@let data = _data();
+@let filterVals = data.filterOpts();
+
+@for (header of columnDef(); track header.key) {
+    <th
+        mex-sortable-table-cell
+        [filterOpts]="filterVals[header.key]"
+        (filterVals)="data.onDataFilter(header.key, $event)"
+        [sortIcon]="data.sortIcon()"
+        [sorting]="data.sortKey() === header.key"
+        [disableFilter]="header.disableFilter"
+        (sort)="data.onSort(header.key)">
+        {{ header.title }}
+    </th>
+}

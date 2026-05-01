@@ -1,6 +1,5 @@
 import { Component, input, ViewEncapsulation } from '@angular/core';
 import { MexSpinner, spinnerAnimation } from '../spinner/spinner';
-import { trigger } from '@angular/animations';
 
 @Component({
     selector: 'mex-panel-header',

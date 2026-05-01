@@ -60,6 +60,7 @@ export class MexSortableTableCell {
     public readonly sorting = input(false);
     public readonly sortIcon = input<MexSortableTableCellIcon | null>(null);
     public readonly filterOpts = input<string[] | null | undefined>();
+    public readonly disableFilter = input<boolean | undefined>(false);
 
     public readonly sort = output<void>();
     public readonly _filterVals = output<string[]>({ alias: 'filterVals' });

@@ -1,14 +1,33 @@
 import {
     computed,
     effect,
+    InputSignal,
     Signal,
     signal,
     WritableSignal
 } from '@angular/core';
 
+export interface MexTableDataSource<T extends Object> {
+    _data:
+        | WritableSignal<T[] | undefined>
+        | Signal<T[] | undefined>
+        | InputSignal<T[] | undefined>;
+    value: Signal<T[] | undefined>;
+    filterOpts: Signal<Record<keyof T, any[]>>;
+    onDataFilter: (key: keyof T, vals: any[]) => void;
+    filteredData: Signal<T[]>;
+    onSort: (key: keyof T) => void;
+    sortKey: WritableSignal<keyof T | undefined>;
+    sortIcon: Signal<'arrow_downward' | 'arrow_upward' | null>;
+    displayedResultsCount: Signal<number>;
+}
+
 export function tableDataSource<T extends object>(
-    _data: WritableSignal<T[] | undefined> | Signal<T[] | undefined>
-) {
+    _data:
+        | WritableSignal<T[] | undefined>
+        | Signal<T[] | undefined>
+        | InputSignal<T[] | undefined>
+): MexTableDataSource<T> {
     const filterVals = signal<Record<keyof T, any[]>>({} as any);
     const sortKey = signal<keyof T | undefined>(undefined);
     const sortDir = signal<'asc' | 'desc' | null>(null);
@@ -26,7 +45,7 @@ export function tableDataSource<T extends object>(
 
     const filterOpts = computed(() => {
         const data = _data();
-        if (!data) return {};
+        if (!data) return {} as Record<keyof T, any[]>;
 
         const unique = data.reduce(
             (acc, data) => {
@@ -41,13 +60,10 @@ export function tableDataSource<T extends object>(
             {} as Record<string, Set<any>>
         );
 
-        return Object.entries(unique).reduce(
-            (acc, [k, v]) => {
-                acc[k] = Array.from(v);
-                return acc;
-            },
-            {} as Record<string, any[]>
-        );
+        return Object.entries(unique).reduce((acc, [k, v]) => {
+            acc[k] = Array.from(v);
+            return acc;
+        }, {} as any) as Record<keyof T, any[]>;
     });
 
     const filteredData = computed(() => {

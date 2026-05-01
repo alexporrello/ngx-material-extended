@@ -7,3 +7,5 @@ export * from './table-section-divider';
 export * from './editable-table-cell';
 export * from './sortable-table-cell';
 export * from './editable-table-data-source';
+export * from './sortable-table-row';
+export * from './types';
