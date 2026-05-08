@@ -90,7 +90,14 @@ mex-panel {
         &.top-left {
             top: 0;
             left: 0;
-            border-top-left-radius: $corner;
+            display: flex;
+
+            .clip {
+                width: 100%;
+                height: 100%;
+                border-top-left-radius: $corner;
+                box-shadow: $negative-offset $negative-offset 0px $offset $clip;
+            }
         }
 
         &.top-right {
@@ -132,4 +139,33 @@ mex-panel {
             }
         }
     }
+
+    // MAT TAB OVERRIDES
+
+    // .mat-mdc-tab-group {
+    //     height: calc(100% - 12px);
+    //     width: calc(100% - 12px);
+    //     background: var(--mat-sys-surface);
+    // }
+
+    .mat-mdc-tab-header {
+        display: none;
+        background: var(--mat-sys-surface);
+        width: 100%;
+        height: 42px;
+
+        .mat-mdc-tab-labels {
+            height: 100%;
+        }
+
+        .mat-mdc-tab {
+            height: 100%;
+        }
+    }
+
+    // .mat-mdc-tab-body-content {
+    //     background: var(--mat-sys-surface);
+    //     height: calc(100% - 54px);
+    //     width: calc(100% - 12px);
+    // }
 }

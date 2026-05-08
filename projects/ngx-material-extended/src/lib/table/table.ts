@@ -1,6 +1,7 @@
 import {
     Component,
     computed,
+    effect,
     ElementRef,
     inject,
     input,
@@ -19,9 +20,18 @@ import {
 export class MexTable {
     public readonly host: ElementRef<HTMLTableElement> = inject(ElementRef);
 
+    public readonly columns = input<number[]>();
     public readonly border = input(false);
 
     public readonly hostClass = computed(() => {
         return 'mex-table ' + (this.border() ? ' bordered' : '');
     });
+
+    constructor() {
+        effect(() => {
+            if (this.columns()) {
+                this.host.nativeElement.style.tableLayout = 'fixed';
+            }
+        });
+    }
 }

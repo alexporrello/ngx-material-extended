@@ -1,1 +1,13 @@
+@if (columns(); as columns) {
+    <colgroup>
+        @for (column of columns; track $index) {
+            @if (column === -1) {
+                <col />
+            } @else {
+                <col [style.width.px]="column" />
+            }
+        }
+    </colgroup>
+}
+
 <ng-content></ng-content>

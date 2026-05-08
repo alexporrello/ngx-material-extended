@@ -80,84 +80,90 @@ html {
         background: var(--mat-sys-surface-container);
         color: var(--mat-sys-on-surface-container);
     }
+}
 
-    //
-    // Outline
-    //
+//
+// Outline
+//
 
-    // Outline bottom - section + section
-    .mex-table-section:has(+ .mex-table-section) {
-        tr:last-child {
-            th,
-            td {
-                border-bottom: solid 1px var(--mat-sys-outline-variant);
-            }
-        }
-    }
-    // Outline bottom - row + row
-    .mex-table-row:has(+ .mex-table-row) {
-        th,
-        td {
-            border-bottom: solid 1px var(--mat-sys-outline-variant);
-        }
-    }
+.mex-table {
     // Outline right - cell + cell
     .mex-table-cell-base:has(+ .mex-table-cell-base) {
         border-right: solid 1px var(--mat-sys-outline-variant);
     }
 
-    //
-    // Border
-    //
+    thead.mex-table-section:first-of-type {
+        .mex-table-row:last-child .mex-table-cell-base {
+            border-bottom: solid 1px var(--mat-sys-outline-variant) !important;
+        }
+    }
 
-    &.bordered {
-        tr {
-            .mex-table-cell:last-child {
-                .mex-table-cell-content,
-                .mex-editable-table-cell-content {
-                    width: calc(100% - 17px);
-                    border-right: solid 1px var(--mat-sys-outline-variant);
-                }
-            }
+    .mex-table-row:has(+ .mex-table-row) {
+        .mex-table-cell-base {
+            border-bottom: solid 1px var(--mat-sys-outline-variant);
+        }
+    }
 
-            .mex-table-cell:first-child {
-                .mex-table-cell-content,
-                .mex-editable-table-cell-content {
-                    width: calc(100% - 17px);
-                    border-left: solid 1px var(--mat-sys-outline-variant);
-                }
+    tfoot.mex-table-section:last-of-type {
+        .mex-table-row:first-child .mex-table-cell-base {
+            border-top: solid 1px var(--mat-sys-outline-variant) !important;
+        }
+    }
+}
+
+//
+// Border
+//
+
+.mex-table.bordered {
+    tr {
+        .mex-table-cell:last-child {
+            .mex-table-cell-content,
+            .mex-editable-table-cell-content {
+                width: calc(100% - 17px);
+                border-right: solid 1px var(--mat-sys-outline-variant);
             }
         }
 
-        .mex-table-section:first-child tr:first-child {
-            th.mex-table-cell {
-                .mex-table-cell-content {
-                    border-top: solid 1px var(--mat-sys-outline-variant);
-                    height: calc(100% - 9px);
-                }
-            }
-        }
-
-        .mex-table-section:last-child tr:last-child {
-            .mex-table-cell {
-                .mex-table-cell-content,
-                .mex-editable-table-cell-content {
-                    border-bottom: solid 1px var(--mat-sys-outline-variant);
-                    height: calc(100% - 9px);
-                }
-
-                &:first-child {
-                    border-bottom-left-radius: var(--mat-sys-corner-medium);
-                    overflow: hidden;
-                }
+        .mex-table-cell:first-child {
+            .mex-table-cell-content,
+            .mex-editable-table-cell-content {
+                width: calc(100% - 17px);
+                border-left: solid 1px var(--mat-sys-outline-variant);
             }
         }
     }
 
-    //
-    // Rounded Corners
-    //
+    .mex-table-section:first-child tr:first-child {
+        th.mex-table-cell {
+            .mex-table-cell-content {
+                border-top: solid 1px var(--mat-sys-outline-variant);
+                height: calc(100% - 9px);
+            }
+        }
+    }
 
+    .mex-table-section:last-child tr:last-child {
+        .mex-table-cell {
+            .mex-table-cell-content,
+            .mex-editable-table-cell-content {
+                border-bottom: solid 1px var(--mat-sys-outline-variant);
+                height: calc(100% - 9px);
+            }
+
+            &:first-child {
+                border-bottom-left-radius: var(--mat-sys-corner-medium);
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+//
+// Rounded Corners
+//
+
+.mex-table {
     @mixin rounded-top-row() {
         .mex-table-cell:first-child .mex-table-cell-content {
             border-top-left-radius: var(--mex-table-corner);
@@ -199,25 +205,4 @@ html {
     .mex-rounded-bottom-table-section .mex-table-row:last-child {
         @include rounded-bottom-row();
     }
-
-    //
-    // Subsection
-    //
-
-    // .mex-table-section.subsection {
-    //     background: orange;
-
-    //     .mex-editable-row,
-    //     .mex-table-row {
-    //         .mex-table-cell:first-child {
-    //             background: orange;
-    //             padding-left: 8px;
-    //         }
-
-    //         .mex-table-cell:last-child {
-    //             background: orange;
-    //             padding-right: 8px;
-    //         }
-    //     }
-    // }
 }

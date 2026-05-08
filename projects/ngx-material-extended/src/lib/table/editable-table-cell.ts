@@ -76,9 +76,7 @@ export class MexEditableTableCell {
         return null;
     });
 
-    constructor() {
-        console.log(this.inputRef());
-    }
+    constructor() {}
 
     onBlur(input: HTMLInputElement) {
         const newVal = input.value;
