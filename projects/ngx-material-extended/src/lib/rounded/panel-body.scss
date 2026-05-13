@@ -13,7 +13,7 @@ mex-panel-body {
 }
 
 .mex-panel-body {
-    background: var(--mat-sys-surface-variant);
+    background: var(--mat-sys-surface);
     display: flex;
     flex-direction: column;
     overflow: scroll;
@@ -24,6 +24,7 @@ mex-panel-body {
     &::-webkit-scrollbar {
         width: $width;
         height: $width;
+        background: var(--mat-sys-surface-variant);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -38,7 +39,7 @@ mex-panel-body {
 
     &::-webkit-scrollbar-corner,
     &::-webkit-scrollbar-track {
-        background: transparent;
+        background: var(--mat-sys-surface-variant);
     }
 
     &__content {
