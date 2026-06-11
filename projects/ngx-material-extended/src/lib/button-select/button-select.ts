@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     contentChild,
     Directive,
@@ -8,6 +9,7 @@ import {
     inject,
     input,
     OnInit,
+    Renderer2,
     ViewEncapsulation
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
@@ -51,14 +53,18 @@ export class MexButtonSelect {
     }
 })
 export class MatSelectTrigger implements AfterViewInit {
+    private _hasSelected = false;
+
     public matSelect = input<MatSelect | undefined>(undefined, {
         alias: 'matSelectTriggerFor'
     });
 
-    constructor() {
+    constructor(private _renderer: Renderer2) {
         effect(() => {
+            if (this._hasSelected) return;
             const select = this.matSelect();
-            console.log(select?.trigger);
+            if (!select) return;
+            this._hideMatSelect(select);
         });
     }
 
@@ -67,16 +73,23 @@ export class MatSelectTrigger implements AfterViewInit {
         if (!select) {
             throw new Error('matSelectTrigger must be given a MatSelect.');
         }
+        this._hideMatSelect(select);
+    }
+
+    private _hideMatSelect(select: MatSelect) {
         const trigger: HTMLDivElement =
-            select.trigger.nativeElement?.parentElement;
-        trigger.style.width = '0px';
-        trigger.style.height = '0px';
-        trigger.style.overflow = 'hidden';
+            select.trigger?.nativeElement?.parentElement;
+        if (!trigger) return;
+
+        this._renderer.setStyle(trigger, 'width', '0px');
+        this._renderer.setStyle(trigger, 'height', '0px');
+        this._renderer.setStyle(trigger, 'overflow', 'hidden');
+
+        this._hasSelected = true;
     }
 
     public openOnClick() {
         const select = this.matSelect();
-        console.log(select);
         if (!select) return;
         select.open();
     }

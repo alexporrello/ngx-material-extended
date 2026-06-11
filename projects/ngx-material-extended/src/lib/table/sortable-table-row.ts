@@ -2,8 +2,7 @@ import { Component, input } from '@angular/core';
 import {
     MexSortableTableCell,
     MexTableDataSource,
-    MexTableRow,
-    tableDataSource
+    MexTableRow
 } from 'ngx-material-extended';
 import { MexTableColumn } from './types';
 

@@ -10,7 +10,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { MexSymbol } from '../symbol/symbol';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { MatSelectTrigger } from '../button-select/button-select';
 
 export declare interface MexTableHeader<T> {
     key: keyof T;
@@ -35,23 +35,10 @@ export declare type MexSortableTableCellIcon =
         MatOption,
         FormsModule,
         ReactiveFormsModule,
-        MexSymbol
+        MexSymbol,
+        MatSelectTrigger
     ],
-    encapsulation: ViewEncapsulation.None,
-    animations: [
-        trigger('minimize-icons', [
-            transition(':enter', [
-                style({ width: '0' }),
-                animate(`250ms cubic-bezier(0.8,0.3,0,1)`)
-            ]),
-            transition(':leave', [
-                animate(
-                    `250ms cubic-bezier(0.8,0.3,0,1)`,
-                    style({ width: '0' })
-                )
-            ])
-        ])
-    ]
+    encapsulation: ViewEncapsulation.None
 })
 export class MexSortableTableCell {
     public readonly _contentClass = input<string>('', {

@@ -12,11 +12,13 @@
 
     @if (isSorting || isFiltering) {
         <span
-            @minimize-icons
+            animate.enter="icon-enter-animation"
+            animate.leave="icon-leave-animation"
             class="mex-sortable-table-cell__actions">
             @if (isSorting) {
                 <span
-                    @minimize-icons
+                    animate.enter="icon-enter-animation"
+                    animate.leave="icon-leave-animation"
                     class="mex-sortable-table-cell__actions--button-wrapper">
                     <button (click)="sort.emit()">
                         <mex-symbol>
@@ -28,9 +30,10 @@
 
             @if (isFiltering && !disableFilter()) {
                 <span
-                    @minimize-icons
+                    animate.enter="icon-enter-animation"
+                    animate.leave="icon-leave-animation"
                     class="mex-sortable-table-cell__actions--button-wrapper">
-                    <button (click)="selectFilter.open()">
+                    <button [matSelectTriggerFor]="selectFilter">
                         <mex-symbol [class.filtered]="isFiltered()">
                             filter_alt
                         </mex-symbol>
@@ -40,20 +43,24 @@
         </span>
     }
 
-    <span class="mex-sortable-table-cell__select">
-        <mat-select
-            #selectFilter
-            multiple
-            class="mex-sortable-table-cell__select--input"
-            (opened)="filtering.set(true)"
-            (closed)="this.filterVals.set(selectFilter.value);filtering.set(false)">
-            @if (filterOpts(); as vals) {
-                @for (val of vals; track $index) {
-                    <mat-option [value]="val">
-                        {{ val ?? '(blank)' }}
-                    </mat-option>
-                }
+    <mat-select
+        #selectFilter
+        multiple
+        [style.width.px]="0"
+        [style.height.px]="0"
+        [style.overflow]="'hidden'"
+        (opened)="filtering.set(true)"
+        (closed)="this.filterVals.set(selectFilter.value);filtering.set(false)">
+        @if (filterOpts(); as vals) {
+            @for (val of vals; track $index) {
+                <mat-option [value]="val">
+                    {{ val ?? '(blank)' }}
+                </mat-option>
             }
-        </mat-select>
-    </span>
+        }
+    </mat-select>
+
+    <!-- <span> -->
+
+    <!-- </span> -->
 </span>

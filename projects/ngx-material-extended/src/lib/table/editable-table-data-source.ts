@@ -77,6 +77,7 @@ export function tableDataSource<T extends object>(
 
         return data.filter((filterVal) => {
             return Object.entries(filters).every(([k, v]) => {
+                if (!v) return true;
                 return (v as any[]).some((f) => f == filterVal[k as keyof T]);
             });
         });
@@ -119,7 +120,7 @@ export function tableDataSource<T extends object>(
 
     const onDataFilter = (key: keyof T, vals: any[]) => {
         filterVals.update((v) => {
-            if (vals.length === 0) {
+            if (!vals || vals.length === 0) {
                 delete v[key];
             } else {
                 v[key] = vals;

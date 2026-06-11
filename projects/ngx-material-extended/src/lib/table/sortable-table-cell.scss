@@ -21,6 +21,7 @@
         &--button-wrapper {
             width: fit-content;
             overflow: hidden;
+            display: flex;
         }
     }
 
@@ -55,6 +56,34 @@
     &:hover {
         .filter-button {
             display: block;
+        }
+    }
+
+    .icon-enter-animation {
+        animation: icon-expand 250ms cubic-bezier(0.35, 0, 0.25, 1);
+    }
+
+    @keyframes icon-expand {
+        from {
+            width: 0;
+            overflow: hidden;
+        }
+        to {
+            width: 24px;
+        }
+    }
+
+    .icon-leave-animation {
+        animation: icon-collapse 250ms cubic-bezier(0.35, 0, 0.25, 1);
+    }
+
+    @keyframes icon-collapse {
+        from {
+            width: 24px;
+        }
+        to {
+            width: 0;
+            overflow: hidden;
         }
     }
 }
