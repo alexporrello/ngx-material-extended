@@ -1,0 +1,78 @@
+$background: var(--mat-sys-surface-variant);
+
+mex-rounded-panel {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-grow: 1;
+    max-height: 100%;
+    overflow: hidden;
+
+    .rounded-panel-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow-x: scroll;
+        overflow-y: scroll;
+
+        $thumb-color: var(--mat-sys-outline);
+        $track-color: $background;
+        $width: 12px;
+
+        &::-webkit-scrollbar {
+            width: $width;
+            height: $width;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: $thumb-color;
+            border: solid 4px $track-color;
+
+            &:hover {
+                border: solid 2px $track-color;
+            }
+        }
+
+        &::-webkit-scrollbar-corner,
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+    }
+
+    .rounded-panel-infix {
+        background: var(--mat-sys-surface);
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .overlay-corners {
+        width: 64px;
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+        fill: $background;
+
+        &.top-left {
+            top: 0;
+        }
+
+        &.top-right {
+            top: 0;
+            right: 12px;
+        }
+
+        &.bottom-right {
+            bottom: 12px;
+            right: 12px;
+        }
+
+        &.bottom-left {
+            bottom: 12px;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+$toolbar-height-calc: var(--mex-sys-toolbar-height);
+$toolbar-h-padding: 12px;
+
+mex-toolbar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+
+    width: 100%;
+    height: $toolbar-height-calc;
+
+    top: 0;
+    color: var(--mat-sys-on-surface);
+    background: var(--mat-sys-surface-variant);
+    z-index: 3;
+    flex-grow: 1;
+
+    img {
+        width: 36px;
+    }
+
+    .mat-display-1 {
+        margin: 0;
+        padding: 0;
+        flex-grow: 1;
+    }
+
+    .round {
+        border-radius: 100%;
+    }
+
+    mex-toolbar-nav {
+        display: flex;
+        flex-grow: 1;
+        gap: 12px;
+        align-items: center;
+        padding-left: 16px;
+
+        span:first-of-type {
+            font: var(--mat-sys-body-large);
+            color: var(--mat-sys-on-surface);
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: none;
+            padding: 0;
+            border-radius: 4px;
+            margin: 0;
+            cursor: pointer;
+            background: inherit;
+        }
+
+        & + span {
+            display: flex;
+            gap: 8px;
+            align-items: middle;
+        }
+    }
+
+    mex-toolbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding-right: 16px;
+    }
+}

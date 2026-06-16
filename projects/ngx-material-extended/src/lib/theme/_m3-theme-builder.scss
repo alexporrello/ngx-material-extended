@@ -230,7 +230,7 @@ $_default-theme-options: (
 
         body,
         app-root {
-            @include sys.body-large();
+            font: var(--mat-sys-body-large);
 
             display: flex;
             flex-direction: column;

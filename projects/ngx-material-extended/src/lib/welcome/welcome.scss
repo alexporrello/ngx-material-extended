@@ -1,0 +1,81 @@
+mex-welcome {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .overlay {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        transition: opacity 500ms ease;
+        display: flex;
+        flex-direction: column;
+        background: var(--background-lighter-color);
+        opacity: 1;
+
+        &--wrapper {
+            display: flex;
+            flex-direction: column;
+            margin: 15vh auto 0 auto;
+            padding: 52px 36px;
+            border: solid 1px var(--background-darker-color);
+            background: var(--background-color);
+            border-radius: 4px;
+            transition: transform 500ms ease;
+            transform: scale(1);
+
+            &-hide {
+                transform: scale(0);
+            }
+        }
+
+        &--hide {
+            opacity: 0;
+        }
+    }
+
+    .hide {
+        height: 0;
+        margin-top: 0;
+    }
+}
+
+mex-welcome-title {
+    font: var(--mat-sys-headline-large);
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+mex-welcome-subtitle {
+    display: flex;
+    justify-content: center;
+    font: var(--mat-sys-title-medium);
+
+    .mat-subheading-2 {
+        &__flex {
+            display: flex;
+            gap: 8px;
+        }
+    }
+
+    span {
+        line-height: 20px;
+        text-align: center;
+    }
+}
+
+mex-welcome-actions {
+    display: flex;
+    gap: 6px;
+    margin: 12px auto 0 auto;
+    transition:
+        margin 250ms ease,
+        width 500ms ease;
+
+    span {
+        line-height: 20px;
+        text-align: center;
+    }
+}

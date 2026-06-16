@@ -1,0 +1,114 @@
+@let username = form.controls.username;
+@let password = form.controls.password;
+
+<div
+    class="panel-wrapper"
+    mexProgressBarWrapper>
+    @if (!usernameValid()) {
+        <div
+            @usernamePanel
+            class="panel">
+            <ng-container [ngTemplateOutlet]="usernamePanel"></ng-container>
+        </div>
+    } @else {
+        <div
+            @passwordPanel
+            class="panel">
+            <ng-container [ngTemplateOutlet]="passwordPanel"></ng-container>
+        </div>
+    }
+    @if (loading()) {
+        <mex-progress-bar-thumb @mexProgressBar></mex-progress-bar-thumb>
+    }
+</div>
+
+<form [formGroup]="form">
+    <!-- Username -->
+    <ng-template #usernamePanel>
+        <div class="mat-display-small">Sign in</div>
+        <div class="mat-title-medium">
+            to continue
+            @if (appName) {
+                to {{ appName }}
+            }
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+                matInput
+                type="email"
+                autocomplete="username"
+                spellcheck="false"
+                tabindex="0"
+                aria-label="Username"
+                name="identifier"
+                autocapitalize="none"
+                formControlName="username" />
+        </mat-form-field>
+        <div class="actions">
+            <button
+                (submit)="requestValidateUsername(username.value)"
+                mat-flat-button
+                [disabled]="loading() || !username.valid"
+                (click)="requestValidateUsername(username.value)">
+                Next
+            </button>
+        </div>
+    </ng-template>
+    <!-- Password -->
+    <ng-template #passwordPanel>
+        <div class="mat-display-small">Welcome</div>
+        <div class="user-account__wrapper">
+            <div
+                class="user-account"
+                (click)="returnToUsername()">
+                <mex-symbol> account_circle </mex-symbol>
+                <span class="mat-body-large">
+                    {{ username.value }}
+                </span>
+                <span class="user-account--back">
+                    <mex-symbol>expand_more</mex-symbol>
+                </span>
+            </div>
+        </div>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+                matInput
+                [type]="hidePassword() ? 'password' : 'text'"
+                autocomplete="current-password"
+                spellcheck="false"
+                tabindex="0"
+                aria-label="Enter your password"
+                name="Passwd"
+                autocapitalize="off"
+                formControlName="password" />
+            <mat-error>
+                @if (
+                    password.dirty &&
+                    password.hasError('required')
+                ) {
+                    <span> Enter a valid password </span>
+                }
+            </mat-error>
+        </mat-form-field>
+
+        <div class="show-password-wrapper">
+            <mat-checkbox
+                [checked]="!hidePassword()"
+                (change)="hidePassword.set(!$event.checked)">
+                Show Password
+            </mat-checkbox>
+        </div>
+
+        <div class="actions">
+            <button
+                mat-flat-button
+                [disabled]="loading() || !password.valid || password.hasError('required')"
+                (click)="requestLogIn(username.value, password.value)">
+                Next
+            </button>
+        </div>
+    </ng-template>
+</form>

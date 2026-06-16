@@ -1,0 +1,14 @@
+@if (showOverlay()) {
+<div
+    class="overlay"
+    [class.overlay--hide]="hide()">
+    <div
+        mexProgressBar
+        class="overlay--wrapper"
+        [class.overlay--wrapper-hide]="hide()"
+        [loading]="loading()">
+        <ng-content></ng-content>
+    </div>
+</div>
+}
+<ng-content select="[body]"></ng-content>

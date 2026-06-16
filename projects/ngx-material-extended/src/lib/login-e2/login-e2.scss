@@ -1,0 +1,65 @@
+.panel-wrapper {
+    width: 448px;
+    height: 348px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: var(--mat-sys-corner-large);
+    background: var(--mat-sys-surface-container-high);
+
+    .panel {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 24px;
+        width: 400px;
+        height: 300px;
+        justify-content: center;
+
+        .mat-display-small {
+            margin-bottom: 8px;
+        }
+
+        .mat-title-medium {
+            margin-bottom: 32px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: right;
+        }
+
+        .user-account {
+            border-radius: 25px;
+            display: flex;
+            gap: 8px;
+            border: solid 1px var(--mat-sys-outline);
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px 4px 4px;
+            cursor: pointer;
+            margin: 0 0 0 0;
+            width: fit-content;
+
+            &__wrapper {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 32px;
+            }
+
+            &--back {
+                height: 24px;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                justify-content: center;
+            }
+        }
+
+        .show-password-wrapper {
+            display: flex;
+            justify-content: start;
+        }
+    }
+}

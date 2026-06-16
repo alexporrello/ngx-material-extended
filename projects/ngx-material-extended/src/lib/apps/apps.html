@@ -1,0 +1,55 @@
+@if (asDropdown) {
+    <button
+        mat-icon-button
+        [matMenuTriggerFor]="appsMenu">
+        <mex-symbol> apps </mex-symbol>
+    </button>
+    <mat-menu #appsMenu>
+        <ng-container [ngTemplateOutlet]="apps"></ng-container>
+    </mat-menu>
+} @else {
+    @if (appName) {
+        @if (appName.welcomeText) {
+            <h1>{{ appName.welcomeText }}</h1>
+        }
+
+        <h3>
+            @if (appName.callToActionText) {
+                {{ appName.callToActionText }}
+            } @else {
+                Select an App To Continue
+            }
+        </h3>
+    }
+    <ng-container [ngTemplateOutlet]="apps"></ng-container>
+}
+
+<ng-template #apps>
+    <ul>
+        @for (app of appsList; track app.path) {
+            @if (app.appRoute !== false) {
+                <li matRipple>
+                    <a [routerLink]="app.path">
+                        <div class="icon-wrapper">
+                            @if (app.matIcon) {
+                                <div class="mat-icon-circle">
+                                    <mat-icon class="icon">
+                                        {{ app.matIcon }}
+                                    </mat-icon>
+                                </div>
+                            } @else if (app.iconUrl) {
+                                <img [src]="app.iconUrl" />
+                            } @else if (app.elmSymbol) {
+                                <mex-symbol>{{ app.elmSymbol }}</mex-symbol>
+                            }
+                        </div>
+
+                        <span>
+                            {{ app.title }}
+                        </span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</ng-template>

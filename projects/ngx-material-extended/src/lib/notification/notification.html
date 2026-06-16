@@ -1,0 +1,57 @@
+@if (notifications.length > 0) {
+    <div class="overlay">
+        <div class="overlay__column">
+            @for (notification of notifications; track $index) {
+                @if (!notification.closed) {
+                    <div
+                        @elmNotification
+                        class="overlay__notification">
+                        <div
+                            class="overlay__notification--body mat-elevation-z3"
+                            [class.overlay__notification--success]="
+                                notification.type === 'SUCCESS'
+                            "
+                            [class.overlay__notification--warn]="
+                                notification.type === 'WARN'
+                            "
+                            [class.overlay__notification--error]="
+                                notification.type === 'ERROR'
+                            "
+                            [class.overlay__notification--message]="
+                                notification.type === 'MESSAGE'
+                            ">
+                            <div class="overlay__notification--text">
+                                <mex-symbol>
+                                    {{ notification.icon }}
+                                </mex-symbol>
+                                <div [innerHTML]="notification.message"></div>
+                            </div>
+                            <div class="overlay__notification--actions">
+                                <button
+                                    mat-flat-button
+                                    (click)="notification.dismiss()">
+                                    Dismiss
+                                </button>
+                                @if (notification.confirmButtonText) {
+                                    <button
+                                        mat-flat-button
+                                        (click)="notification.accept()">
+                                        {{ notification.confirmButtonText }}
+                                    </button>
+                                }
+                            </div>
+                            <div
+                                class="overlay__notification--timeout-bar-wrapper">
+                                @if (notification.showTimeout) {
+                                    <div
+                                        @elmNotificationTimeout
+                                        class="overlay__notification--timeout-bar"></div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

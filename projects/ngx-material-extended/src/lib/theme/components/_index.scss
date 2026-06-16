@@ -1,0 +1,132 @@
+html {
+    --mex-sys-toolbar-height: 56px;
+
+    --mex-sys-padding-extra-small: 4px;
+    --mex-sys-padding-small: 6px;
+    --mex-sys-padding-medium: 8px;
+    --mex-sys-padding-large: 12px;
+    --mex-sys-padding-extra-large: 16px;
+
+    --mex-sys-padding-container-small: 4px 12px;
+    --mex-sys-padding-container-medium: 8px 16px;
+}
+
+@mixin _emphasized-scroll-color($color) {
+    .progress-bar {
+        & > div:first-child {
+            background-color: $color;
+        }
+    }
+}
+
+.emphasized-primary {
+    @include _emphasized-scroll-color(var(--mat-sys-on-primary));
+}
+
+.emphasized-accent {
+    @include _emphasized-scroll-color(var(--mat-sys-on-tertiary));
+}
+
+.emphasized-warn {
+    @include _emphasized-scroll-color(var(--mat-sys-on-error));
+}
+
+.emphasized-notice {
+    @include _emphasized-scroll-color(var(--mat-sys-on-warn));
+}
+
+.progress-bar {
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: transparent;
+
+    &__wrapper {
+        position: relative;
+        padding: 0;
+    }
+
+    & > div:first-child {
+        width: 100%;
+        height: 100%;
+        background-color: var(--mat-sys-primary);
+        animation: indeterminateAnimation 1500ms infinite linear;
+        transform-origin: 0% 0%;
+    }
+}
+
+@keyframes indeterminateAnimation {
+    0% {
+        transform: translateX(0) scaleX(0.1);
+    }
+
+    50% {
+        transform: translateX(50%) scaleX(0.5);
+    }
+
+    100% {
+        transform: translateX(100%) scaleX(0);
+    }
+}
+
+.rounded-panel-wrapper {
+    display: flex;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.mex-scroll {
+    &::-webkit-scrollbar {
+        inline-size: 12px;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--mat-sys-outline-variant);
+        border-start-start-radius: 20px;
+        border-start-end-radius: 20px;
+        border-end-start-radius: 20px;
+        border-end-end-radius: 20px;
+        border-block: 3px solid transparent;
+        border-inline: 3px solid transparent;
+        background-clip: content-box;
+    }
+}
+
+@mixin mex-border() {
+    border: solid 1px var(--mat-sys-outline);
+    border-radius: var(--mat-sys-corner-large);
+}
+
+.mex-border {
+    @include mex-border();
+}
+
+@mixin _gradient-icon($color) {
+    background-image: linear-gradient(
+        135deg,
+        $color 0%,
+        color-mix(in srgb, $color 85%, black 25%) 100%
+    ) !important;
+    background-clip: text;
+    color: transparent;
+}
+
+.mex-gradient-icon {
+    @include _gradient-icon(var(--mat-sys-primary));
+
+    &-accent {
+        @include _gradient-icon(var(--mat-sys-tertiary));
+    }
+
+    &-warn {
+        @include _gradient-icon(var(--mat-sys-error));
+    }
+}

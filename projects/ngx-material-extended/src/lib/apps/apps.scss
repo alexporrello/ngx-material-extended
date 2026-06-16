@@ -1,0 +1,116 @@
+.mat-mdc-menu-panel {
+    max-width: 500px !important;
+
+    .mat-mdc-menu-content {
+        ul {
+            padding: 0 8px;
+            border-radius: var(--mat-sys-corner-large);
+            background: var(--mat-sys-surface-container);
+        }
+    }
+}
+
+mex-apps {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &:has(button) {
+        width: fit-content;
+    }
+
+    h1 {
+        padding: 0;
+        margin: 0;
+        padding-bottom: 24px;
+    }
+
+    h3 {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 48px;
+    }
+
+    ul {
+        padding: 8px;
+    }
+}
+
+mex-apps,
+.mat-mdc-menu-panel {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        width: fit-content;
+        width: 304px;
+        gap: 8px;
+        margin: 0;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            outline: none;
+            border: none;
+            border-radius: var(--mat-sys-corner-medium);
+            height: 84px;
+            width: 84px;
+            padding: 6px;
+            cursor: pointer;
+            transition: 150ms ease;
+
+            background-color: var(--mat-sys-surface-container);
+
+            &:hover {
+                background-color: var(--mat-sys-surface-container-high);
+            }
+
+            &:focus {
+                background-color: var(--mat-sys-surface-bright);
+            }
+
+            a,
+            a:visited {
+                color: var(--mat-sys-on-surface);
+            }
+
+            a {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+                text-decoration: none;
+
+                .icon-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                    justify-content: center;
+                    align-items: center;
+
+                    .mat-icon-circle {
+                        background-color: var(--mat-sys-secondary-container);
+                        color: var(--mat-sys-on-secondary-container);
+                        border-radius: 100%;
+                        width: 48px;
+                        height: 48px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    img {
+                        width: 48px;
+                        height: 48px;
+                    }
+                }
+
+                span {
+                    font: var(--mat-sys-label-large);
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+$app-body-padding: 8px;
+$app-body-padding-x: $app-body-padding;
+
+$app-body-padding-y: $app-body-padding;
+$app-body-height: calc(var(--mex-sys-toolbar-height) + $app-body-padding-y);
+
+mex-app-body {
+    position: fixed;
+    top: var(--mex-sys-toolbar-height);
+    width: 100%;
+    height: calc(100% - var(--mex-sys-toolbar-height));
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--mat-sys-surface-variant);
+    overflow: hidden;
+}

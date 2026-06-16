@@ -1,0 +1,111 @@
+html {
+    --mex-sys-action-row-item-border-color: var(--mat-sys-outline);
+}
+
+$border-color: var(--mex-sys-action-row-item-border-color);
+
+mex-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    outline: none;
+    white-space: nowrap;
+    height: fit-content;
+
+    ::ng-deep.mat-select-arrow-wrapper {
+        margin-left: 8px;
+    }
+
+    mex-action-row-item,
+    mex-action-row-text-area,
+    mex-action-row-button {
+        &:first-child {
+            border-left: solid 1px $border-color;
+            border-top-left-radius: var(--mat-sys-corner-medium);
+            border-bottom-left-radius: var(--mat-sys-corner-medium);
+        }
+
+        &:last-child {
+            border-right: solid 1px $border-color;
+            border-top-right-radius: var(--mat-sys-corner-medium);
+            border-bottom-right-radius: var(--mat-sys-corner-medium);
+        }
+    }
+}
+
+// Divider styling
+
+mex-action-row-item + mex-action-row-item,
+mex-action-row-text-area + mex-action-row-text-area,
+mex-action-row-button + mex-action-row-button,
+mex-action-row-item + mex-action-row-text-area,
+mex-action-row-item + mex-action-row-button,
+mex-action-row-text-area + mex-action-row-item,
+mex-action-row-text-area + mex-action-row-button,
+mex-action-row-button + mex-action-row-item,
+mex-action-row-button + mex-action-row-text-area {
+    border-left: solid 1px $border-color;
+}
+
+mex-action-row-item,
+mex-action-row-text-area,
+mex-action-row-button {
+    font: var(--mat-sys-body-large);
+    font-weight: 500;
+    display: flex;
+    height: 40px;
+    padding: 0 16px;
+    border-top: solid 1px $border-color;
+    border-bottom: solid 1px $border-color;
+    outline: none;
+
+    &:has(*:focus),
+    &:focus {
+        background: color-mix(
+            in srgb,
+            var(--mat-sys-on-surface) 10%,
+            var(--mat-sys-surface-container-highest) 90%
+        );
+    }
+}
+
+mex-action-row-item,
+mex-action-row-button {
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    cursor: pointer;
+    width: 100%;
+
+    & > mat-select {
+        max-width: 128px;
+
+        &.mat-mdc-select,
+        .mat-mdc-select-value-text {
+            font: var(--mat-sys-body-large);
+            font-weight: 400;
+        }
+    }
+}
+
+mex-action-row-button:hover {
+    background: color-mix(
+        in srgb,
+        var(--mat-sys-on-surface) 5%,
+        var(--mat-sys-surface-container-highest) 95%
+    );
+}
+
+mex-action-row-text-area {
+    display: flex;
+
+    input {
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        color: inherit;
+        min-width: 144px;
+        outline: none;
+    }
+}
