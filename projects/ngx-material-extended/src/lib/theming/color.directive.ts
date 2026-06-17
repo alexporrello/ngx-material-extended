@@ -69,7 +69,7 @@ export class MexBoldColorDirective extends MexColorBaseDirective {
             primary: 'elm-color__primary--bold',
             accent: 'elm-color__accent--bold',
             warn: 'elm-color__warn--bold',
-            alert: 'elm-color__warn--alert'
+            alert: 'elm-color__alert--bold'
         });
     }
 }

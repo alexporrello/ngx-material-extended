@@ -1,14 +1,12 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { AsyncPipe } from '@angular/common';
 import {
     Component,
     Directive,
     ElementRef,
-    Input,
+    input,
     NgModule,
     Renderer2
 } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Directive({
     selector: '[mexProgressBarWrapper]',
@@ -43,19 +41,15 @@ export class MexProgressBarThumb {}
 @Component({
     selector: 'mex-progress-bar',
     template: `
-        @if (loading$ | async) {
+        @if (loading()) {
             <mex-progress-bar-thumb @mexProgressBar></mex-progress-bar-thumb>
         }
     `,
-    imports: [MexProgressBarThumb, AsyncPipe],
+    imports: [MexProgressBarThumb],
     animations: [mexProgressBarAnimation]
 })
 export class MexProgressBar {
-    @Input()
-    set loading(isLoading: boolean | null) {
-        this.loading$.next(isLoading ?? false);
-    }
-    public loading$ = new BehaviorSubject(true);
+    public readonly loading = input<boolean | null>(false);
 }
 
 @NgModule({

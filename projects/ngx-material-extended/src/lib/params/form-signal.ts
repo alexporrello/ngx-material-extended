@@ -11,12 +11,11 @@ export function formSignal<T>(): {
     const sig = signal<T | null>(null);
 
     const subscription = new Subscription();
-    subscription.add(() => {
+    subscription.add(
         control.valueChanges.subscribe((change) => {
-            console.log(change);
             sig.set(change);
-        });
-    });
+        })
+    );
 
     return {
         control,

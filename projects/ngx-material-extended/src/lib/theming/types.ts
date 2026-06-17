@@ -15,7 +15,7 @@ export declare type MexColorClass =
     | 'elm-color__primary--bold'
     | 'elm-color__accent--bold'
     | 'elm-color__warn--bold'
-    | 'elm-color__warn--alert';
+    | 'elm-color__alert--bold';
 
 export const mexColorClasses = [
     'elm-color__default',

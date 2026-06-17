@@ -1,4 +1,4 @@
-import { Component, computed, ElementRef, inject, input } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, OnDestroy } from '@angular/core';
 import { resizeSignal } from '../signal/resize-signal';
 
 @Component({
@@ -8,7 +8,7 @@ import { resizeSignal } from '../signal/resize-signal';
         '[class]': 'sectionClass()'
     }
 })
-export class MexTableSection {
+export class MexTableSection implements OnDestroy {
     public readonly host =
         inject<ElementRef<HTMLTableSectionElement>>(ElementRef);
 
@@ -16,9 +16,7 @@ export class MexTableSection {
     public readonly roundedBottom = input(false);
     public readonly subSection = input(false);
 
-    private readonly _mutationObserver = resizeSignal(this.host.nativeElement);
-
-    constructor() {}
+    private readonly _resizeSignal = resizeSignal(this.host.nativeElement);
 
     public sectionClass = computed(() => {
         let sectionClass = 'mex-table-section ';
@@ -32,7 +30,11 @@ export class MexTableSection {
     });
 
     public readonly height = computed(() => {
-        this._mutationObserver.value();
+        this._resizeSignal.value();
         return this.host.nativeElement.offsetHeight;
     });
+
+    ngOnDestroy(): void {
+        this._resizeSignal.disconnect();
+    }
 }

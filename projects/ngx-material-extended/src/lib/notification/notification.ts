@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, inject, Injectable, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscriber } from 'rxjs';
 
 import { MexSymbol } from '../symbol/symbol';
@@ -8,7 +8,7 @@ import { MatButton, MatAnchor } from '@angular/material/button';
 declare type MexNotificationType = 'SUCCESS' | 'WARN' | 'ERROR' | 'MESSAGE';
 
 class MexNotification {
-    private _timeout: any;
+    private _timeout: ReturnType<typeof setTimeout> | undefined;
     private _observer?: Subscriber<boolean>;
 
     public showTimeout = true;
@@ -59,7 +59,22 @@ class MexNotification {
     }
 }
 
-export let notifications: MexNotification[] = [];
+@Injectable({ providedIn: 'root' })
+export class MexNotificationsStore {
+    readonly notifications: MexNotification[] = [];
+
+    constructor() {
+        _store = this;
+    }
+}
+
+// Module-level reference set on first service instantiation.
+// Allows standalone functions (called outside injection context) to reach the store.
+let _store: MexNotificationsStore | null = null;
+
+function _getNotifications(): MexNotification[] {
+    return _store?.notifications ?? (_store = new MexNotificationsStore()).notifications;
+}
 
 export function successConfirmation(
     message: string,
@@ -75,7 +90,7 @@ export function successConfirmation(
             timeout
         );
 
-        notifications.push(notification);
+        _getNotifications().push(notification);
         notification.start(observer);
     });
 }
@@ -128,13 +143,9 @@ function broadcastMessage(
     let timeout = 5000;
     let allowClose = true;
 
-    if (args[0] !== undefined) {
-        typeof args[0] === 'number'
-            ? (timeout = args[0])
-            : (allowClose = args[1]);
-
-        if (args[1] !== undefined) allowClose = args[0];
-    }
+    if (typeof args[0] === 'number') timeout = args[0];
+    else if (typeof args[0] === 'boolean') allowClose = args[0];
+    if (typeof args[1] === 'boolean') allowClose = args[1];
 
     let icon;
 
@@ -160,7 +171,7 @@ function broadcastMessage(
         timeout
     );
 
-    notifications.push(notification);
+    _getNotifications().push(notification);
     notification.start();
 
     return notification;
@@ -192,9 +203,9 @@ function broadcastMessage(
     encapsulation: ViewEncapsulation.None
 })
 export class MexNotificationsOverlay {
-    constructor() {}
+    private readonly _store = inject(MexNotificationsStore);
 
     public get notifications(): MexNotification[] {
-        return notifications;
+        return this._store.notifications;
     }
 }

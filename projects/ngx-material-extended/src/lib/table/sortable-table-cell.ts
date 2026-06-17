@@ -7,8 +7,10 @@ import {
     signal,
     ViewEncapsulation
 } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatOption, MatSelect } from '@angular/material/select';
+import { skip } from 'rxjs';
 import { MexSymbol } from '../symbol/symbol';
 import { MatSelectTrigger } from '../button-select/button-select';
 
@@ -57,10 +59,10 @@ export class MexSortableTableCell {
     public readonly filtering = signal(false);
 
     constructor() {
-        effect(() => {
-            const filterVals = this.filterVals();
-            this._filterVals.emit(filterVals);
-        });
+        // Skip the initial value so parents only receive explicit user selections.
+        toObservable(this.filterVals)
+            .pipe(skip(1), takeUntilDestroyed())
+            .subscribe((vals) => this._filterVals.emit(vals));
 
         effect(() => {
             this.filterOpts();

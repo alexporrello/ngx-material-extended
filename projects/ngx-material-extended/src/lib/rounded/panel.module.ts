@@ -6,14 +6,13 @@ import {
 } from './panel-header';
 import { MexPanel } from './panel';
 import { MexPanelBody } from './panel-body';
-import { MexPanelCollapseButton } from 'ngx-material-extended';
+import { MexPanelCollapseButton } from './panel-collapse-button';
 
 const components = [
     MexPanel,
     MexPanelHeader,
     MexPanelHeaderTitle,
     MexPanelHeaderActionButton,
-    MexPanelHeader,
     MexPanelCollapseButton,
     MexPanelBody
 ];

@@ -6,5 +6,6 @@ export {
     warn as broadcastWarn,
     success as broadcastSuccess,
     successConfirmation,
-    MexNotificationsOverlay
+    MexNotificationsOverlay,
+    MexNotificationsStore
 } from './notification';

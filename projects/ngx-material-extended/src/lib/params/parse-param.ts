@@ -1,5 +1,5 @@
 import { Params } from '@angular/router';
-import { InferParamType, Param, ParamType } from 'ngx-material-extended';
+import { InferParamType, Param, ParamType } from './types';
 
 export function parseParams<const TConfig extends Record<string, Param>>(
     params: Params,
@@ -45,6 +45,7 @@ export function parseVal<T extends ParamType>(
             return defaultVal ?? null;
         case 'date':
             const asDate = new Date(val);
+            if (isNaN(asDate.getTime())) return (defaultVal ?? null) as any;
             return asDate;
         default:
             return val;

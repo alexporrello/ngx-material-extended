@@ -1,9 +1,5 @@
+import { InjectionToken } from '@angular/core';
 import { Route } from '@angular/router';
-
-export const MexAppsListToken = 'APPS_LIST';
-export const MexAppNameToken = 'APP_NAME';
-export const MexWelcomeTextToken = 'WELCOME_TEXT';
-export const MexMaterialSymbolToken = 'MAT_SYMBOLS';
 
 export declare type MexRoutes = MexRoute[];
 
@@ -18,6 +14,11 @@ export declare interface MexAppsPageText {
     welcomeText?: string;
     callToActionText?: string;
 }
+
+export const MexAppsListToken = new InjectionToken<MexRoutes>('MexAppsList');
+export const MexAppNameToken = new InjectionToken<string>('MexAppName');
+export const MexWelcomeTextToken = new InjectionToken<MexAppsPageText>('MexWelcomeText');
+export const MexMaterialSymbolToken = new InjectionToken<boolean>('MexMaterialSymbol');
 
 export function provideMexConfig(options: {
     apps: MexRoute[];

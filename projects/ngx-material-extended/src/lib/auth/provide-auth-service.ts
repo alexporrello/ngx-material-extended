@@ -1,7 +1,7 @@
-import { Provider, Type } from '@angular/core';
+import { InjectionToken, Provider, Type } from '@angular/core';
 import { MexAuthService } from './auth.service';
 
-export const MexAuthServiceToken = 'AUTH_SERVICE';
+export const MexAuthServiceToken = new InjectionToken<MexAuthService>('MexAuthService');
 
 export function provideMexAuthService(
     authServiceType: Type<MexAuthService>

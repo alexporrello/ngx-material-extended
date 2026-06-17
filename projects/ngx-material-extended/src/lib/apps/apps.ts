@@ -11,7 +11,7 @@ import {
     MexRoutes,
     MexWelcomeTextToken
 } from '../config/config';
-import { CommonModule } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
@@ -22,7 +22,7 @@ import { MexSymbol } from '../symbol/symbol';
 @Component({
     selector: 'mex-apps',
     imports: [
-        CommonModule,
+        NgTemplateOutlet,
         MatButtonModule,
         MatIcon,
         RouterLink,

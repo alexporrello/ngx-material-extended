@@ -5,6 +5,7 @@ import {
     forwardRef,
     input,
     model,
+    OnDestroy,
     output,
     signal,
     viewChild,
@@ -44,7 +45,7 @@ export const NgxEditableTdValidator = {
     },
     encapsulation: ViewEncapsulation.None
 })
-export class NgxEditableTd extends NgxCell {
+export class NgxEditableTd extends NgxCell implements OnDestroy {
     public readonly inputRef = viewChild<ElementRef<HTMLDivElement>>('input');
 
     public readonly colspan = input<number>(1);
@@ -54,7 +55,6 @@ export class NgxEditableTd extends NgxCell {
     public readonly emitOnBlur = input<boolean>();
 
     public readonly value = model('');
-    public readonly newValue = signal<string>(this.value());
 
     public readonly onValueChange = output<NgxEditableTdEvent>();
     public readonly onMathEvalError = output<unknown>();
@@ -77,6 +77,8 @@ export class NgxEditableTd extends NgxCell {
 
         return null;
     });
+
+    private _colorTimers: ReturnType<typeof setTimeout>[] = [];
 
     onBlur(input: HTMLInputElement) {
         const newVal = input.value;
@@ -101,14 +103,6 @@ export class NgxEditableTd extends NgxCell {
     onInputChange(event: KeyboardEvent, input: HTMLInputElement) {
         const newVal = input.value;
 
-        if (newVal.length === 0) {
-            this.formula.set(false);
-            this.invalid.set(true);
-            return;
-        } else {
-            this.invalid.set(false);
-        }
-
         if (event.key === 'Escape') {
             input.value = this.value();
             this.formula.set(false);
@@ -116,6 +110,14 @@ export class NgxEditableTd extends NgxCell {
             this.invalid.set(false);
             input.blur();
             return;
+        }
+
+        if (newVal.length === 0) {
+            this.formula.set(false);
+            this.invalid.set(true);
+            return;
+        } else {
+            this.invalid.set(false);
         }
 
         // Check for and evaluate math
@@ -191,10 +193,15 @@ export class NgxEditableTd extends NgxCell {
         });
     }
 
-    public applyColorTmp(signal: WritableSignal<boolean>, duration = 2000) {
-        signal.set(true);
-        setTimeout(() => {
-            signal.set(false);
+    public applyColorTmp(sig: WritableSignal<boolean>, duration = 2000) {
+        sig.set(true);
+        const id = setTimeout(() => {
+            sig.set(false);
         }, duration);
+        this._colorTimers.push(id);
+    }
+
+    ngOnDestroy(): void {
+        this._colorTimers.forEach(clearTimeout);
     }
 }

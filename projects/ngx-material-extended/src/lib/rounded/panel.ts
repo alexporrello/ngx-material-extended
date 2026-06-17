@@ -7,11 +7,9 @@ import {
     model,
     ViewEncapsulation
 } from '@angular/core';
-import {
-    MexPanelBody,
-    MexPanelCollapseButton,
-    MexPanelHeader
-} from 'ngx-material-extended';
+import { MexPanelBody } from './panel-body';
+import { MexPanelCollapseButton } from './panel-collapse-button';
+import { MexPanelHeader } from './panel-header';
 
 @Component({
     selector: 'mex-panel',
@@ -20,9 +18,9 @@ import {
     encapsulation: ViewEncapsulation.None
 })
 export class MexPanel {
-    /** @deprecated */
+    /** @deprecated No replacement — rounded caps are now always shown. Remove this binding. */
     public readonly showTopCap = input(true);
-    /** @deprecated */
+    /** @deprecated No replacement — rounded caps are now always shown. Remove this binding. */
     public readonly showEndCap = input(true);
 
     public readonly showContent = model(true);

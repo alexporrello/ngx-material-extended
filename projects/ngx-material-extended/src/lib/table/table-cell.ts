@@ -3,6 +3,7 @@ import { Component, computed, input, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: '[mex-table-cell]',
     templateUrl: './table-cell.html',
+    encapsulation: ViewEncapsulation.None,
     host: {
         class: 'mex-table-cell mex-table-cell-base'
     }

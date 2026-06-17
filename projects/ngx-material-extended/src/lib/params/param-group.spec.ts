@@ -86,7 +86,7 @@ describe('paramGroup()', () => {
         });
 
         it('hydrates each control from the URL on creation', async () => {
-            const { component } = await setup('/?q=angular&page=3&active=true');
+            const { component } = await setup('/?search=angular&page=3&active=true');
             expect(component.filters.formGroup.value).toEqual({
                 search: 'angular',
                 page: 3,
@@ -95,7 +95,7 @@ describe('paramGroup()', () => {
         });
 
         it('hydrates partial params, using defaults for absent ones', async () => {
-            const { component } = await setup('/?q=test');
+            const { component } = await setup('/?search=test');
             expect(component.filters.formGroup.value).toEqual({
                 search: 'test',
                 page: 1,
@@ -113,7 +113,7 @@ describe('paramGroup()', () => {
             component.filters.formGroup.controls['search'].setValue('rxjs');
             tick(0);
 
-            expect(router.url).toContain('q=rxjs');
+            expect(router.url).toContain('search=rxjs');
         }));
 
         it('updates the URL independently for each control', fakeAsync(async () => {
@@ -146,7 +146,7 @@ describe('paramGroup()', () => {
             });
             tick(0);
 
-            expect(router.url).toContain('q=forms');
+            expect(router.url).toContain('search=forms');
             expect(router.url).toContain('page=2');
         }));
     });
@@ -157,7 +157,7 @@ describe('paramGroup()', () => {
         it('updates individual controls when the URL changes', fakeAsync(async () => {
             const { component, router } = await setup('/');
 
-            await router.navigateByUrl('/?q=signal&page=2');
+            await router.navigateByUrl('/?search=signal&page=2');
             tick();
 
             expect(component.filters.formGroup.controls['search'].value).toBe(
@@ -167,7 +167,7 @@ describe('paramGroup()', () => {
         }));
 
         it('resets controls to defaults when params are removed from URL', fakeAsync(async () => {
-            const { component, router } = await setup('/?q=hello&page=3');
+            const { component, router } = await setup('/?search=hello&page=3');
 
             await router.navigateByUrl('/');
             tick();

@@ -11,8 +11,6 @@ export class MexTableRow {
     public readonly roundedTop = input(false);
     public readonly roundedBottom = input(false);
 
-    constructor() {}
-
     public rowClass = computed(() => {
         let sectionClass = 'mex-table-row ';
 

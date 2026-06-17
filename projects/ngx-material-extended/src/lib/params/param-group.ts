@@ -1,10 +1,17 @@
 import { inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Subscription } from 'rxjs';
 
 import { InferFormControls, InferSignals, Param } from './types';
 import { parseParams } from './parse-param';
+
+function paramDefault(conf: Param): any {
+    if (conf.default !== undefined) return conf.default;
+    if (conf.type === 'string') return '';
+    return null;
+}
 
 export function paramGroup<const TConfig extends Record<string, Param>>(
     config: TConfig
@@ -18,22 +25,26 @@ export function paramGroup<const TConfig extends Record<string, Param>>(
 
     const controls = Object.fromEntries(
         Object.entries(config).map(([key, conf]) => {
-            return [key, new FormControl(conf.default ?? null)];
+            return [key, new FormControl(paramDefault(conf))];
         })
     ) as InferFormControls<TConfig>;
     const formGroup = new FormGroup(controls);
 
     const signals = Object.fromEntries(
         Object.entries(config).map(([key, conf]) => {
-            return [key, signal(conf.default ?? null)];
+            return [key, signal(paramDefault(conf))];
         })
     ) as InferSignals<TConfig>;
 
     const subscriptions = new Subscription();
 
+    // URL → controls: set each configured param from URL, or reset to default
     subscriptions.add(
-        route.queryParams.subscribe((params) => {
-            Object.entries(parseParams(params, config)).forEach(([k, v]) => {
+        route.queryParams.pipe(takeUntilDestroyed()).subscribe((params) => {
+            const parsed = parseParams(params, config);
+            Object.entries(config).forEach(([k, conf]) => {
+                const v =
+                    parsed[k] !== undefined ? parsed[k] : paramDefault(conf);
                 if (controls[k]) {
                     controls[k].setValue(v, { emitEvent: false });
                     signals[k].set(v);
@@ -42,24 +53,27 @@ export function paramGroup<const TConfig extends Record<string, Param>>(
         })
     );
 
-    subscriptions.add(
-        formGroup.valueChanges.pipe(debounceTime(300)).subscribe((changes) => {
-            const queryParams: Record<string, any> = {};
-            Object.entries(changes).forEach(([key, value]) => {
-                const _config = config[key];
-                if (!_config) return;
-
-                signals[key].update(() => value);
-                queryParams[key] =
-                    value === (_config.default ?? null) ? null : value;
-            });
-            router.navigate([], {
-                queryParams,
-                queryParamsHandling: 'merge',
-                replaceUrl: true
-            });
-        })
-    );
+    // Controls → URL: per-key debounce using debounceMs from config
+    Object.entries(config).forEach(([key, conf]) => {
+        subscriptions.add(
+            controls[key].valueChanges
+                .pipe(
+                    debounceTime(conf.debounceMs ?? 300),
+                    takeUntilDestroyed()
+                )
+                .subscribe((value) => {
+                    signals[key].set(value);
+                    router.navigate([], {
+                        queryParams: {
+                            [key]:
+                                value === paramDefault(conf) ? null : value
+                        },
+                        queryParamsHandling: 'merge',
+                        replaceUrl: true
+                    });
+                })
+        );
+    });
 
     return {
         formGroup,

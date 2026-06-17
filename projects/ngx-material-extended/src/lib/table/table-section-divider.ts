@@ -12,6 +12,4 @@ export class MexTableSectionDivider {
 
     public readonly height = input<'large' | 'medium' | 'small'>('medium');
     public readonly contentClass = input<string>('');
-
-    constructor() {}
 }

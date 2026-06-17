@@ -8,6 +8,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
         class: 'material-symbols-outlined material-symbols-sharp material-symbols-rounded'
     }
 })
-export class MexSymbol {
-    constructor() {}
-}
+export class MexSymbol {}

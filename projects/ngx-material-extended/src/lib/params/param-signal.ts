@@ -1,4 +1,5 @@
 import { effect, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { debounceTime, Subscription, take } from 'rxjs';
@@ -34,7 +35,7 @@ export function paramSignal<const TConfig extends Record<string, Param>>(
     const subscriptions = new Subscription();
 
     subscriptions.add(
-        route.queryParams.subscribe((params) => {
+        route.queryParams.pipe(takeUntilDestroyed()).subscribe((params) => {
             Object.entries(parseParams(params, config)).forEach(([k, v]) => {
                 if (signals[k]) {
                     signals[k].set(v);

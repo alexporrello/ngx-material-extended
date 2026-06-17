@@ -2,7 +2,7 @@ import {
     Component,
     effect,
     input,
-    Input,
+    OnDestroy,
     signal,
     ViewEncapsulation
 } from '@angular/core';
@@ -38,33 +38,35 @@ export class MexWelcomeActions {}
     imports: [MexProgressBarDirective],
     encapsulation: ViewEncapsulation.None
 })
-export class MexWelcome {
-    public _loading = input<boolean>(false, { alias: 'loading' });
+export class MexWelcome implements OnDestroy {
+    public readonly loading = input<boolean>(false);
+    public readonly showBody = input<boolean | null>(false);
 
-    @Input()
-    public set showBody(hide: boolean | null) {
-        if (hide) {
-            this.hide.set(hide);
-            setTimeout(() => {
-                this.showOverlay.set(!hide);
-            }, 500);
-        } else {
-            this.showOverlay.set(true);
-            setTimeout(() => {
-                this.hide.set(false);
-            }, 5);
-        }
-    }
+    public readonly hide = signal(false);
+    public readonly showOverlay = signal(true);
 
-    public loading = signal<boolean>(false);
-    public hide = signal(false);
-    public showOverlay = signal(true);
+    private _hideTimer: ReturnType<typeof setTimeout> | undefined;
 
     constructor() {
         effect(() => {
-            const loading = this._loading();
-            this.loading.set(loading);
+            clearTimeout(this._hideTimer);
+            const hide = this.showBody();
+            if (hide) {
+                this.hide.set(true);
+                this._hideTimer = setTimeout(() => {
+                    this.showOverlay.set(false);
+                }, 500);
+            } else {
+                this.showOverlay.set(true);
+                this._hideTimer = setTimeout(() => {
+                    this.hide.set(false);
+                }, 5);
+            }
         });
+    }
+
+    ngOnDestroy(): void {
+        clearTimeout(this._hideTimer);
     }
 
     public toggle(hide?: boolean): void {

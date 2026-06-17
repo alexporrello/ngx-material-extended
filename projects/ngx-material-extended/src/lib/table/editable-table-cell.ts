@@ -4,6 +4,7 @@ import {
     ElementRef,
     input,
     model,
+    OnDestroy,
     output,
     signal,
     viewChild,
@@ -44,7 +45,7 @@ export const EditableTdValidator = {
     },
     encapsulation: ViewEncapsulation.None
 })
-export class MexEditableTableCell {
+export class MexEditableTableCell implements OnDestroy {
     public readonly inputRef = viewChild<ElementRef<HTMLInputElement>>('input');
 
     public readonly validator = input<keyof typeof EditableTdValidator>();
@@ -52,7 +53,6 @@ export class MexEditableTableCell {
     public readonly emitOnBlur = input<boolean>();
 
     public readonly value = model('');
-    public readonly newValue = signal<string>(this.value());
 
     public readonly onValueChange = output<MexEditableTableCellEvent>();
     public readonly onMathEvalError = output<unknown>();
@@ -76,7 +76,7 @@ export class MexEditableTableCell {
         return null;
     });
 
-    constructor() {}
+    private _colorTimers: ReturnType<typeof setTimeout>[] = [];
 
     onBlur(input: HTMLInputElement) {
         const newVal = input.value;
@@ -191,10 +191,15 @@ export class MexEditableTableCell {
         });
     }
 
-    public applyColorTmp(signal: WritableSignal<boolean>, duration = 2000) {
-        signal.set(true);
-        setTimeout(() => {
-            signal.set(false);
+    public applyColorTmp(sig: WritableSignal<boolean>, duration = 2000) {
+        sig.set(true);
+        const id = setTimeout(() => {
+            sig.set(false);
         }, duration);
+        this._colorTimers.push(id);
+    }
+
+    ngOnDestroy(): void {
+        this._colorTimers.forEach(clearTimeout);
     }
 }
