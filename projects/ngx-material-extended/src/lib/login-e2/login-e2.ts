@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { NgTemplateOutlet } from '@angular/common';
 import {
     Component,
@@ -28,18 +27,11 @@ import { MexAppNameToken } from '../config/config';
 import { MexAuthService } from '../auth/auth.service';
 import { MexAuthServiceToken } from '../auth/provide-auth-service';
 import {
-    mexProgressBarAnimation,
     MexProgressBarThumb,
     MexProgressBarWrapper
 } from '../progress-bar/progress-bar';
 import { MexSymbol } from '../symbol/symbol';
 import { Subscription } from 'rxjs';
-
-const animationTime = `${500}ms cubic-bezier(0.8,0.3,0,1)`;
-
-const panelWidth = 432;
-const usernameAnimation = style({ transform: `translateX(-${panelWidth}px)` });
-const passwordAnimation = style({ transform: `translateX(${panelWidth}px)` });
 
 @Component({
     selector: 'mex-login-e2',
@@ -58,29 +50,6 @@ const passwordAnimation = style({ transform: `translateX(${panelWidth}px)` });
         MatError,
         MexProgressBarThumb,
         MexProgressBarWrapper
-    ],
-    animations: [
-        mexProgressBarAnimation,
-        trigger('usernamePanel', [
-            transition(':enter', [usernameAnimation, animate(animationTime)]),
-            transition(':leave', [animate(animationTime, usernameAnimation)])
-        ]),
-        trigger('passwordPanel', [
-            transition(':enter', [passwordAnimation, animate(animationTime)]),
-            transition(':leave', [animate(animationTime, passwordAnimation)])
-        ]),
-        trigger('errorMessage', [
-            transition(':enter', [
-                style({ height: '0' }),
-                animate('150ms cubic-bezier(0.8,0.3,0,1)')
-            ]),
-            transition(':leave', [
-                animate(
-                    '150ms cubic-bezier(0.8,0.3,0,1)',
-                    style({ height: '0' })
-                )
-            ])
-        ])
     ]
 })
 export class MexLoginE2 implements OnDestroy {

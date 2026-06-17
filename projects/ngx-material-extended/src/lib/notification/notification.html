@@ -4,7 +4,8 @@
             @for (notification of notifications; track $index) {
                 @if (!notification.closed) {
                     <div
-                        @elmNotification
+                        animate.enter="notification-enter-animation"
+                        animate.leave="notification-leave-animation"
                         class="overlay__notification">
                         <div
                             class="overlay__notification--body mat-elevation-z3"
@@ -44,7 +45,7 @@
                                 class="overlay__notification--timeout-bar-wrapper">
                                 @if (notification.showTimeout) {
                                     <div
-                                        @elmNotificationTimeout
+                                        animate.leave="notification-timeout-leave-animation"
                                         class="overlay__notification--timeout-bar"></div>
                                 }
                             </div>

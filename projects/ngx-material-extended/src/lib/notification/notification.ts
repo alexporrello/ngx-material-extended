@@ -2,7 +2,6 @@ import { Component, inject, Injectable, ViewEncapsulation } from '@angular/core'
 import { Observable, Subscriber } from 'rxjs';
 
 import { MexSymbol } from '../symbol/symbol';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { MatButton, MatAnchor } from '@angular/material/button';
 
 declare type MexNotificationType = 'SUCCESS' | 'WARN' | 'ERROR' | 'MESSAGE';
@@ -183,23 +182,6 @@ function broadcastMessage(
     styleUrl: './notification.scss',
     imports: [MexSymbol, MatAnchor],
     standalone: true,
-    animations: [
-        trigger('elmNotification', [
-            transition(':enter', [
-                style({ height: '0' }),
-                animate('500ms cubic-bezier(0.8,0.3,0,1)')
-            ]),
-            transition(':leave', [
-                animate(
-                    '500ms cubic-bezier(0.8,0.3,0,1)',
-                    style({ height: '0', paddingBottom: '0', paddingTop: '0' })
-                )
-            ])
-        ]),
-        trigger('elmNotificationTimeout', [
-            transition(':leave', [animate('5000ms', style({ width: '0' }))])
-        ])
-    ],
     encapsulation: ViewEncapsulation.None
 })
 export class MexNotificationsOverlay {

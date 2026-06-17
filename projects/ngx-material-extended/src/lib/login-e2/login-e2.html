@@ -6,19 +6,24 @@
     mexProgressBarWrapper>
     @if (!usernameValid()) {
         <div
-            @usernamePanel
+            animate.enter="username-panel-enter-animation"
+            animate.leave="username-panel-leave-animation"
             class="panel">
             <ng-container [ngTemplateOutlet]="usernamePanel"></ng-container>
         </div>
     } @else {
         <div
-            @passwordPanel
+            animate.enter="password-panel-enter-animation"
+            animate.leave="password-panel-leave-animation"
             class="panel">
             <ng-container [ngTemplateOutlet]="passwordPanel"></ng-container>
         </div>
     }
     @if (loading()) {
-        <mex-progress-bar-thumb @mexProgressBar></mex-progress-bar-thumb>
+        <mex-progress-bar-thumb
+            animate.enter="progress-bar-enter-animation"
+            animate.leave="progress-bar-leave-animation"
+        ></mex-progress-bar-thumb>
     }
 </div>
 

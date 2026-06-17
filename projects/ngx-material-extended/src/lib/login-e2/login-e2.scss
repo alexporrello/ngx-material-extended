@@ -1,3 +1,35 @@
+.username-panel-enter-animation {
+    animation: username-panel-enter 500ms cubic-bezier(0.8, 0.3, 0, 1);
+}
+
+@keyframes username-panel-enter {
+    from { transform: translateX(-432px); }
+}
+
+.username-panel-leave-animation {
+    animation: username-panel-leave 500ms cubic-bezier(0.8, 0.3, 0, 1) forwards;
+}
+
+@keyframes username-panel-leave {
+    to { transform: translateX(-432px); }
+}
+
+.password-panel-enter-animation {
+    animation: password-panel-enter 500ms cubic-bezier(0.8, 0.3, 0, 1);
+}
+
+@keyframes password-panel-enter {
+    from { transform: translateX(432px); }
+}
+
+.password-panel-leave-animation {
+    animation: password-panel-leave 500ms cubic-bezier(0.8, 0.3, 0, 1) forwards;
+}
+
+@keyframes password-panel-leave {
+    to { transform: translateX(432px); }
+}
+
 .panel-wrapper {
     width: 448px;
     height: 348px;

@@ -47,11 +47,36 @@ mex-panel-body {
         flex-direction: column;
         background: var(--mat-sys-surface);
         flex-grow: 1;
+        min-height: 0;
     }
 
     &__spacer {
         background: var(--mat-sys-surface);
         width: 100%;
         flex-grow: 1;
+    }
+}
+
+.panel-body-enter-animation {
+    animation: panel-body-enter 500ms cubic-bezier(0.8, 0.3, 0, 1);
+}
+
+@keyframes panel-body-enter {
+    from {
+        height: 0;
+        min-height: 0;
+        overflow: hidden;
+    }
+}
+
+.panel-body-leave-animation {
+    overflow: hidden;
+    animation: panel-body-leave 500ms cubic-bezier(0.8, 0.3, 0, 1) forwards;
+}
+
+@keyframes panel-body-leave {
+    to {
+        height: 0;
+        min-height: 0;
     }
 }

@@ -72,6 +72,24 @@ html {
     }
 }
 
+.progress-bar-enter-animation {
+    animation: progress-bar-enter 150ms;
+}
+
+@keyframes progress-bar-enter {
+    from { height: 0; }
+    to { height: 4px; }
+}
+
+.progress-bar-leave-animation {
+    animation: progress-bar-leave 150ms forwards;
+}
+
+@keyframes progress-bar-leave {
+    from { height: 4px; }
+    to { height: 0; }
+}
+
 .rounded-panel-wrapper {
     display: flex;
     height: 100%;

@@ -7,6 +7,26 @@
     }
 }
 
+.notification-enter-animation {
+    animation: notification-enter 500ms cubic-bezier(0.8, 0.3, 0, 1);
+}
+
+@keyframes notification-enter {
+    from { height: 0; }
+}
+
+.notification-leave-animation {
+    animation: notification-leave 500ms cubic-bezier(0.8, 0.3, 0, 1) forwards;
+}
+
+@keyframes notification-leave {
+    to { height: 0; padding-top: 0; padding-bottom: 0; }
+}
+
+.notification-timeout-leave-animation {
+    animation: shrink 5000ms linear forwards;
+}
+
 .overlay {
     width: 100vw;
     height: 100vh;

@@ -2,6 +2,6 @@
     <ng-content></ng-content>
 
     @if (loading()) {
-        <mex-spinner @mex-spinner-animation></mex-spinner>
+        <mex-spinner animate.enter="spinner-enter-animation" animate.leave="spinner-leave-animation"></mex-spinner>
     }
 </div>

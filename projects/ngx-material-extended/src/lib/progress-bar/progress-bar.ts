@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import {
     Component,
     Directive,
@@ -24,11 +23,6 @@ export class MexProgressBarWrapper {
     }
 }
 
-export const mexProgressBarAnimation = trigger('mexProgressBar', [
-    transition(':enter', [style({ height: '0' }), animate('150ms')]),
-    transition(':leave', [animate('150ms', style({ height: '0' }))])
-]);
-
 @Component({
     selector: 'mex-progress-bar-thumb',
     template: ` <div></div> `,
@@ -42,11 +36,13 @@ export class MexProgressBarThumb {}
     selector: 'mex-progress-bar',
     template: `
         @if (loading()) {
-            <mex-progress-bar-thumb @mexProgressBar></mex-progress-bar-thumb>
+            <mex-progress-bar-thumb
+                animate.enter="progress-bar-enter-animation"
+                animate.leave="progress-bar-leave-animation"
+            ></mex-progress-bar-thumb>
         }
     `,
-    imports: [MexProgressBarThumb],
-    animations: [mexProgressBarAnimation]
+    imports: [MexProgressBarThumb]
 })
 export class MexProgressBar {
     public readonly loading = input<boolean | null>(false);
