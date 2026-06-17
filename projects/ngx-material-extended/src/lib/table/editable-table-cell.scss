@@ -11,11 +11,6 @@ html {
     --mex-editable-table-cell-unsaved: #{mix(orange)};
 }
 
-input {
-    height: 100%;
-    background: transparent;
-}
-
 .mex-editable-table-cell-content {
     display: flex;
     align-items: center;
@@ -25,22 +20,39 @@ input {
     background: var(--mat-sys-surface);
 }
 
-.mex-table-cell {
+input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    appearance: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+}
+
+.mex-editable-table-cell {
     position: relative;
+    padding: 0 !important;
+    height: 1px;
+    background: var(--mat-sys-surface-variant);
 
     &:has(input:focus) .mex-editable-table-cell-content {
         background: var(--mex-editable-table-cell-focus);
     }
+
     &.invalid .mex-editable-table-cell-content {
-        background: var(--mex-editable-table-cell-error) !important;
+        background: var(--mex-editable-table-cell-error);
     }
 
     &.formula .mex-editable-table-cell-content {
-        background: var(--mex-editable-table-cell-formula) !important;
+        background: var(--mex-editable-table-cell-formula);
     }
 
     &.unsaved .mex-editable-table-cell-content {
-        background: var(--mex-editable-table-cell-unsaved) !important;
+        background: var(--mex-editable-table-cell-unsaved);
     }
 
     .spinner {
@@ -102,42 +114,5 @@ input {
             height: 0;
             overflow: hidden;
         }
-    }
-}
-
-.mex-editable-table-cell {
-    position: relative;
-    padding: 0 !important;
-    background: var(--mat-sys-surface-variant) !important;
-    height: 0;
-
-    .mex-table-cell-content {
-        // display: flex;
-        // background: var(--mat-sys-surface);
-        // height: calc(100% - 8px);
-        // padding: 4px 8px;
-
-        &:has(input:focus) {
-            background: var(--mex-editable-table-cell-focus);
-        }
-
-        &.invalid {
-            background: var(--mex-editable-table-cell-error) !important;
-        }
-
-        &.formula {
-            background: var(--mex-editable-table-cell-formula) !important;
-        }
-
-        &.unsaved {
-            background: var(--mex-editable-table-cell-unsaved) !important;
-        }
-    }
-
-    .input-wrapper {
-        display: flex;
-        height: 100%;
-        background: transparent;
-        align-items: center;
     }
 }

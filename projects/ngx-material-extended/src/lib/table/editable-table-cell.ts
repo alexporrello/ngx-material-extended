@@ -36,7 +36,7 @@ export const EditableTdValidator = {
     templateUrl: './editable-table-cell.html',
     styleUrl: './editable-table-cell.scss',
     host: {
-        class: 'mex-table-cell mex-table-cell-base',
+        class: 'mex-editable-table-cell mex-table-cell-base',
         '[class.invalid]': 'invalid()',
         '[class.formula]': 'formula()',
         '[class.unsaved]': 'unsaved()',

@@ -117,7 +117,7 @@ html {
 
 .mex-table.bordered {
     tr {
-        .mex-table-cell:last-child {
+        :is(.mex-table-cell, .mex-editable-table-cell):last-child {
             .mex-table-cell-content,
             .mex-editable-table-cell-content {
                 width: calc(100% - 17px);
@@ -125,7 +125,7 @@ html {
             }
         }
 
-        .mex-table-cell:first-child {
+        :is(.mex-table-cell, .mex-editable-table-cell):first-child {
             .mex-table-cell-content,
             .mex-editable-table-cell-content {
                 width: calc(100% - 17px);
@@ -144,7 +144,7 @@ html {
     }
 
     .mex-table-section:last-child tr:last-child {
-        .mex-table-cell {
+        :is(.mex-table-cell, .mex-editable-table-cell) {
             .mex-table-cell-content,
             .mex-editable-table-cell-content {
                 border-bottom: solid 1px var(--mat-sys-outline-variant);
@@ -175,14 +175,14 @@ html {
     }
 
     @mixin rounded-bottom-row() {
-        .mex-table-cell:first-child {
+        :is(.mex-table-cell, .mex-editable-table-cell):first-child {
             .mex-editable-table-cell-content,
             .mex-table-cell-content {
                 border-bottom-left-radius: var(--mex-table-corner);
             }
         }
 
-        .mex-table-cell:last-child {
+        :is(.mex-table-cell, .mex-editable-table-cell):last-child {
             .mex-editable-table-cell-content,
             .mex-table-cell-content {
                 border-bottom-right-radius: var(--mex-table-corner);
