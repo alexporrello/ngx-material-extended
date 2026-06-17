@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, signal, ViewEncapsulation } from '@angular/core';
+import { Component, computed, inject, signal, ViewEncapsulation } from '@angular/core';
+import { MEX_PANEL } from './panel-token';
 
 @Component({
     selector: 'mex-panel-body',
@@ -22,7 +23,9 @@ import { Component, signal, ViewEncapsulation } from '@angular/core';
     ]
 })
 export class MexPanelBody {
-    public readonly showContent = signal(true);
-    public readonly panelHasHeader = signal(true);
+    private readonly _panel = inject(MEX_PANEL, { optional: true });
+
+    public readonly showContent = computed(() => this._panel?.showContent() ?? true);
+    public readonly panelHasHeader = computed(() => this._panel?.hasHeader() ?? true);
     public readonly panelHasFooter = signal(false);
 }

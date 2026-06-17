@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NgxEditableTdEvent, NgxTableModule } from 'ngx-table';
+import { MexEditableTableCellEvent, MexTableModule } from 'ngx-material-extended';
 import { DataService } from '../data.service';
 import { AppService } from '../app.service';
 
 @Component({
     selector: 'app-editable-table',
-    imports: [NgxTableModule],
+    imports: [MexTableModule],
     templateUrl: './editable-table.html',
     styleUrl: './editable-table.scss'
 })
@@ -17,7 +17,7 @@ export class EditableTable {
         this.appService.pageTitle.set('Editable Table Demo');
     }
 
-    public onCellEdit(event: NgxEditableTdEvent) {
+    public onCellEdit(event: MexEditableTableCellEvent) {
         event.submit();
 
         setTimeout(() => {

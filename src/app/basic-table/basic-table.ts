@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { NgxTableModule } from 'ngx-table';
 import { DataService } from '../data.service';
 import { AppService } from '../app.service';
 import { MexTableModule } from 'ngx-material-extended';

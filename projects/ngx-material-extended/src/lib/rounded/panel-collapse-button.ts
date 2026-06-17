@@ -1,6 +1,7 @@
-import { Component, input, model } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MexSymbol } from '../symbol/symbol';
 import { MexPanelHeaderActionButton } from './panel-header';
+import { MEX_PANEL } from './panel-token';
 
 @Component({
     selector: 'mex-panel-collapse-button',
@@ -9,9 +10,16 @@ import { MexPanelHeaderActionButton } from './panel-header';
     imports: [MexSymbol, MexPanelHeaderActionButton]
 })
 export class MexPanelCollapseButton {
-    public readonly open = model(true);
+    private readonly _panel = inject(MEX_PANEL, { optional: true });
+    private readonly _open = signal(true);
+
+    public readonly open = computed(() => this._panel?.showContent() ?? this._open());
 
     public toggleOpen(open = !this.open()) {
-        this.open.set(open);
+        if (this._panel) {
+            this._panel.showContent.set(open);
+        } else {
+            this._open.set(open);
+        }
     }
 }

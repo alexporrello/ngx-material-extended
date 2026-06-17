@@ -94,36 +94,6 @@
                 }
             }
         },
-        "ngx-table": {
-            "projectType": "library",
-            "root": "projects/ngx-table",
-            "sourceRoot": "projects/ngx-table/src",
-            "prefix": "lib",
-            "architect": {
-                "build": {
-                    "builder": "@angular/build:ng-packagr",
-                    "configurations": {
-                        "production": {
-                            "tsConfig": "projects/ngx-table/tsconfig.lib.prod.json"
-                        },
-                        "development": {
-                            "tsConfig": "projects/ngx-table/tsconfig.lib.json"
-                        }
-                    },
-                    "defaultConfiguration": "production"
-                },
-                "test": {
-                    "builder": "@angular/build:karma",
-                    "options": {
-                        "tsConfig": "projects/ngx-table/tsconfig.spec.json",
-                        "polyfills": [
-                            "zone.js",
-                            "zone.js/testing"
-                        ]
-                    }
-                }
-            }
-        },
         "ngx-material-extended": {
             "projectType": "library",
             "root": "projects/ngx-material-extended",

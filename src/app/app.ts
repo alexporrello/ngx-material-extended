@@ -10,7 +10,6 @@ import { MatIconButton } from '@angular/material/button';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { Router, RouterOutlet } from '@angular/router';
 
-import { NgxTableModule } from 'ngx-table';
 import { AppService } from './app.service';
 
 @Component({
@@ -18,7 +17,6 @@ import { AppService } from './app.service';
     templateUrl: './app.html',
     styleUrl: './app.scss',
     imports: [
-        NgxTableModule,
         ReactiveFormsModule,
         FormsModule,
         MatIconButton,
