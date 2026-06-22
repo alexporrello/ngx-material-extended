@@ -1,25 +1,22 @@
-@use '../../projects/ngx-table/src/lib/ngx-table.scss' as table;
-
 :host {
-    @include table.ngx-table-vars($thead-top: 64px);
-
     max-width: 860px;
     margin: 0;
     padding: 0;
     font-family: var(--mat-sys-body-large);
     color: var(--mat-sys-on-surface);
+    background: var(--mat-sys-surface-variant);
 }
 
 $nav-height: 64px;
 $body-padding: 8px;
-$body-height: calc(100% - $nav-height - $body-padding);
+$body-height: calc(100% - $nav-height);
 
 .navigation {
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
-    background: var(--mat-sys-surface);
+    background: var(--mat-sys-surface-variant);
     z-index: 2;
     height: $nav-height;
     padding: 0 8px;
@@ -34,7 +31,8 @@ $body-height: calc(100% - $nav-height - $body-padding);
     height: $body-height;
     display: flex;
     flex-direction: column;
-    padding: 0 $body-padding $body-padding;
+    padding: 0 0 0 $body-padding;
+    background: var(--mat-sys-surface-variant);
 }
 
 section {

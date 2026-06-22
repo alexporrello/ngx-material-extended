@@ -1,5 +1,2 @@
-@use '../../../projects/ngx-table/src/lib/ngx-table.scss' as table;
-
 :host {
-    @include table.ngx-table-vars($thead-top: 64px);
 }

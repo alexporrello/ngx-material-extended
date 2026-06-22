@@ -1,0 +1,49 @@
+<mex-bento direction="row">
+    <mex-panel size="75">
+        <mex-panel-header>
+            <mex-panel-header-title>A — 75% width</mex-panel-header-title>
+            <mex-panel-collapse-button />
+        </mex-panel-header>
+        <mex-panel-body>
+            <div class="demo-content">
+                <p>
+                    Collapse me (top-right chevron). My parent is a
+                    <code>row</code>, so I collapse along the width axis into an
+                    icon-only strip and B/C grow to fill.
+                </p>
+            </div>
+        </mex-panel-body>
+    </mex-panel>
+
+    <mex-bento
+        direction="column"
+        size="25">
+        <mex-panel>
+            <mex-panel-header>
+                <mex-panel-header-title>B — auto</mex-panel-header-title>
+                <mex-panel-collapse-button />
+            </mex-panel-header>
+            <mex-panel-body>
+                <div class="demo-content">
+                    <p>
+                        No <code>size</code> — I split the column 50/50 with C.
+                        My parent is a <code>column</code>, so I collapse along
+                        the height axis to my 42px header.
+                    </p>
+                </div>
+            </mex-panel-body>
+        </mex-panel>
+
+        <mex-panel>
+            <mex-panel-header>
+                <mex-panel-header-title>C — auto</mex-panel-header-title>
+                <mex-panel-collapse-button />
+            </mex-panel-header>
+            <mex-panel-body>
+                <div class="demo-content">
+                    <p>Collapse B or C and the other grows to fill.</p>
+                </div>
+            </mex-panel-body>
+        </mex-panel>
+    </mex-bento>
+</mex-bento>

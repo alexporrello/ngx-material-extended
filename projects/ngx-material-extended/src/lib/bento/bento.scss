@@ -1,0 +1,65 @@
+mex-bento {
+    // Collapsed extent: the header row (42px) plus the panel body's 12px
+    // scrollbar gutter, so the visible header reads as a square and the
+    // rounded-corner clip divs (which need ~44px) have room. Used both as the
+    // flex-basis target (so the animation lands exactly here) and as the min on
+    // the cross axis (so a short sibling can't squeeze the corners).
+    --mex-bento-collapsed-size: calc(
+        var(--mex-sys-panel-header-height) + 12px
+    );
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    &[data-direction='row'] {
+        flex-direction: row;
+    }
+
+    &[data-direction='column'] {
+        flex-direction: column;
+    }
+
+    // Every direct child is a flex item; the transition drives the collapse
+    // resize. The item stays mounted and only changes size, so a CSS transition
+    // (not animate.enter/leave) is the right tool.
+    > .mex-bento-item {
+        overflow: hidden;
+        min-width: 0;
+        min-height: 0;
+        transition:
+            flex-basis 500ms cubic-bezier(0.8, 0.3, 0, 1),
+            flex-grow 500ms cubic-bezier(0.8, 0.3, 0, 1);
+    }
+
+    // Guard both axes so the rounded corners always have room (the collapse
+    // axis is also driven to this value via flex-basis in MexBentoItem).
+    > .mex-bento-item--collapsed {
+        min-width: var(--mex-bento-collapsed-size);
+        min-height: var(--mex-bento-collapsed-size);
+    }
+
+    // WIDTH-collapse (row parent): icon-only header strip.
+    // Reaches into panel-header internals via ViewEncapsulation.None.
+    // NOTE: depends on .mex-panel-header__title / .mex-panel-header classes
+    // defined in rounded/panel-header.scss — keep in sync if those rename.
+    > .mex-bento-item--collapsed-x {
+        .mex-panel-header__title {
+            display: none;
+        }
+
+        // Zero only the left padding so the icon fits the square; keep the
+        // header's natural right margin (= scrollbar width) so it aligns with
+        // the body's scrollbar gutter. Center the lone expand button.
+        .mex-panel-header {
+            padding: 0;
+            justify-content: center;
+        }
+
+        .mex-panel-header__action-button {
+            margin-right: 0;
+        }
+    }
+}
