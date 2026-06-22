@@ -1,3 +1,18 @@
+input,
+textarea {
+    font: var(--mat-sys-body-large);
+    color: var(--mat-sys-on-surface);
+    background: var(--mat-sys-surface-container);
+    min-width: 0;
+    width: 100%;
+    padding: 0;
+    border: none;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
 html {
     --mex-sys-toolbar-height: 56px;
 
