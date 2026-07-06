@@ -1,5 +1,7 @@
 <mex-bento direction="row">
-    <mex-panel size="75">
+    <mex-panel
+        size="75"
+        collapsedSize="180">
         <mex-panel-header>
             <mex-panel-header-title>A — 75% width</mex-panel-header-title>
             <mex-panel-collapse-button />
@@ -8,11 +10,23 @@
             <div class="demo-content">
                 <p>
                     Collapse me (top-right chevron). My parent is a
-                    <code>row</code>, so I collapse along the width axis into an
-                    icon-only strip and B/C grow to fill.
+                    <code>row</code>, so I collapse along the width axis. I set
+                    <code>collapsedSize</code> and a
+                    <code>mex-panel-collapsed-body</code>, so instead of an
+                    icon-only strip I shrink to a 180px rail showing a condensed
+                    view.
                 </p>
             </div>
         </mex-panel-body>
+        <mex-panel-collapsed-body>
+            <div class="demo-rail">
+                <span class="demo-rail__label">Items</span>
+                <span>Apex-Sprint-14.5</span>
+                <span>TBLZR-Sprint-14.5</span>
+                <span>Titans-Sprint-14.5</span>
+                <span>HST-Sprint-14.4</span>
+            </div>
+        </mex-panel-collapsed-body>
     </mex-panel>
 
     <mex-bento

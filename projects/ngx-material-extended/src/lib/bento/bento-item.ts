@@ -51,7 +51,12 @@ export class MexBentoItem {
     );
 
     public readonly collapsedAlongRow = computed(
-        () => this.collapsed() && this.parent?.direction() === 'row'
+        () =>
+            this.collapsed() &&
+            this.parent?.direction() === 'row' &&
+            // A collapsed body keeps the full header (title + button); only the
+            // icon-only strip (no collapsed body) hides the title.
+            !this.panel?.hasCollapsedBody()
     );
 
     /**
@@ -87,8 +92,18 @@ export class MexBentoItem {
     public readonly flexBasis = computed(() => {
         if (!this.parent) return null;
         if (this.collapsed()) {
-            // Collapse along the main axis to the collapsed extent so the
-            // animation lands exactly on the min the corners need.
+            // A collapsed body needs room to read; honour the panel's
+            // collapsedSize when set. Otherwise collapse along the main axis to
+            // the icon-only extent so the animation lands exactly on the min
+            // the corners need.
+            const size = this.panel?.collapsedSize() ?? null;
+            if (size != null && size !== '') {
+                // A bare number — or a numeric string from the template
+                // attribute (`collapsedSize="180"`) — is pixels. Anything else
+                // (e.g. `"12rem"`, `"30%"`) is used verbatim as a CSS length.
+                const n = typeof size === 'number' ? size : Number(size);
+                return Number.isNaN(n) ? String(size) : `${n}px`;
+            }
             return 'var(--mex-bento-collapsed-size)';
         }
         const s = this.size();

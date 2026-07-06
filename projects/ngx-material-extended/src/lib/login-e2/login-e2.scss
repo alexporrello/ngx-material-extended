@@ -3,7 +3,9 @@
 }
 
 @keyframes username-panel-enter {
-    from { transform: translateX(-432px); }
+    from {
+        transform: translateX(-432px);
+    }
 }
 
 .username-panel-leave-animation {
@@ -11,7 +13,9 @@
 }
 
 @keyframes username-panel-leave {
-    to { transform: translateX(-432px); }
+    to {
+        transform: translateX(-432px);
+    }
 }
 
 .password-panel-enter-animation {
@@ -19,7 +23,9 @@
 }
 
 @keyframes password-panel-enter {
-    from { transform: translateX(432px); }
+    from {
+        transform: translateX(432px);
+    }
 }
 
 .password-panel-leave-animation {
@@ -27,7 +33,9 @@
 }
 
 @keyframes password-panel-leave {
-    to { transform: translateX(432px); }
+    to {
+        transform: translateX(432px);
+    }
 }
 
 .panel-wrapper {
@@ -38,6 +46,14 @@
     overflow: hidden;
     border-radius: var(--mat-sys-corner-large);
     background: var(--mat-sys-surface-container-high);
+
+    .mat-display-small {
+        font: var(--mat-sys-display-small);
+    }
+
+    .mat-title-medium {
+        font: var(--mat-sys-title-medium);
+    }
 
     .panel {
         position: absolute;

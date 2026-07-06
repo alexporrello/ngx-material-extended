@@ -6,6 +6,7 @@ import {
 } from './panel-header';
 import { MexPanel } from './panel';
 import { MexPanelBody } from './panel-body';
+import { MexPanelCollapsedBody } from './panel-collapsed-body';
 import { MexPanelCollapseButton } from './panel-collapse-button';
 
 const components = [
@@ -14,7 +15,8 @@ const components = [
     MexPanelHeaderTitle,
     MexPanelHeaderActionButton,
     MexPanelCollapseButton,
-    MexPanelBody
+    MexPanelBody,
+    MexPanelCollapsedBody
 ];
 
 @NgModule({

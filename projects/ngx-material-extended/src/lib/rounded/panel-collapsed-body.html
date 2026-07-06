@@ -1,0 +1,9 @@
+<div class="mex-panel-collapsed-body">
+    @if (visible()) {
+        <div
+            class="mex-panel-collapsed-body__content"
+            animate.enter="panel-collapsed-body-enter-animation">
+            <ng-content />
+        </div>
+    }
+</div>

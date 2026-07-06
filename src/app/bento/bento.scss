@@ -22,3 +22,24 @@
         border-radius: var(--mat-sys-corner-small);
     }
 }
+
+.demo-rail {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font: var(--mat-sys-body-medium);
+        color: var(--mat-sys-on-surface);
+        padding: 10px 16px;
+        border-bottom: solid 1px var(--mat-sys-outline-variant);
+        white-space: nowrap;
+    }
+
+    &__label {
+        font: var(--mat-sys-label-large) !important;
+        color: var(--mat-sys-on-surface-variant) !important;
+        position: sticky;
+        top: 0;
+        background: var(--mat-sys-surface);
+    }
+}
