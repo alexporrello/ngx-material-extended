@@ -4,7 +4,9 @@
         [matMenuTriggerFor]="appsMenu">
         <mex-symbol> apps </mex-symbol>
     </button>
-    <mat-menu #appsMenu>
+    <mat-menu
+        #appsMenu
+        class="mex-apps-menu">
         <ng-container [ngTemplateOutlet]="apps"></ng-container>
     </mat-menu>
 } @else {
