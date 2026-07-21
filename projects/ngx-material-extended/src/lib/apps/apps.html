@@ -27,7 +27,7 @@
 <ng-template #apps>
     <ul>
         @for (app of appsList; track app.path) {
-            @if (app.appRoute !== false) {
+            @if (showApp(app)) {
                 <li matRipple>
                     <a [routerLink]="app.path">
                         <div class="icon-wrapper">
