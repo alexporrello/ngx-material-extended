@@ -7,4 +7,5 @@ export declare interface MexTableColumn<T extends object> {
     dateNarrow?: boolean;
     disableFilter?: boolean;
     clickable?: boolean;
+    innerHTML?: boolean;
 }

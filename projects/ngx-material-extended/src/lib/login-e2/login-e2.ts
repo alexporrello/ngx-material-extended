@@ -57,6 +57,11 @@ export class MexLoginE2 implements OnDestroy {
 
     public readonly fillView = input(true);
 
+    /** Labels for the credential fields. Defaults preserve prior behavior;
+     *  override to match the auth provider (e.g. "Email / Username"). */
+    public readonly usernameLabel = input('Username');
+    public readonly passwordLabel = input('Password');
+
     public readonly onValidateUsername = output<string>();
     public readonly onLogIn = output<{ username: string; password: string }>();
     public readonly onAuthComplete = output<void>();

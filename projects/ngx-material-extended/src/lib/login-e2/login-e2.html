@@ -1,33 +1,31 @@
 @let username = form.controls.username;
 @let password = form.controls.password;
-
-<div
-    class="panel-wrapper"
-    mexProgressBarWrapper>
-    @if (!usernameValid()) {
-        <div
-            animate.enter="username-panel-enter-animation"
-            animate.leave="username-panel-leave-animation"
-            class="panel">
-            <ng-container [ngTemplateOutlet]="usernamePanel"></ng-container>
-        </div>
-    } @else {
-        <div
-            animate.enter="password-panel-enter-animation"
-            animate.leave="password-panel-leave-animation"
-            class="panel">
-            <ng-container [ngTemplateOutlet]="passwordPanel"></ng-container>
-        </div>
-    }
-    @if (loading()) {
-        <mex-progress-bar-thumb
-            animate.enter="progress-bar-enter-animation"
-            animate.leave="progress-bar-leave-animation"
-        ></mex-progress-bar-thumb>
-    }
-</div>
-
 <form [formGroup]="form">
+    <div
+        class="panel-wrapper"
+        mexProgressBarWrapper>
+        @if (!usernameValid()) {
+            <div
+                animate.enter="username-panel-enter-animation"
+                animate.leave="username-panel-leave-animation"
+                class="panel">
+                <ng-container [ngTemplateOutlet]="usernamePanel"></ng-container>
+            </div>
+        } @else {
+            <div
+                animate.enter="password-panel-enter-animation"
+                animate.leave="password-panel-leave-animation"
+                class="panel">
+                <ng-container [ngTemplateOutlet]="passwordPanel"></ng-container>
+            </div>
+        }
+        @if (loading()) {
+            <mex-progress-bar-thumb
+                animate.enter="progress-bar-enter-animation"
+                animate.leave="progress-bar-leave-animation"></mex-progress-bar-thumb>
+        }
+    </div>
+
     <!-- Username -->
     <ng-template #usernamePanel>
         <div class="mat-display-small">Sign in</div>
@@ -38,14 +36,14 @@
             }
         </div>
         <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
+            <mat-label>{{ usernameLabel() }}</mat-label>
             <input
                 matInput
                 type="email"
                 autocomplete="username"
                 spellcheck="false"
                 tabindex="0"
-                aria-label="Username"
+                [attr.aria-label]="usernameLabel()"
                 name="identifier"
                 autocapitalize="none"
                 formControlName="username" />
@@ -78,22 +76,19 @@
         </div>
 
         <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
+            <mat-label>{{ passwordLabel() }}</mat-label>
             <input
                 matInput
                 [type]="hidePassword() ? 'password' : 'text'"
                 autocomplete="current-password"
                 spellcheck="false"
                 tabindex="0"
-                aria-label="Enter your password"
+                [attr.aria-label]="passwordLabel()"
                 name="Passwd"
                 autocapitalize="off"
                 formControlName="password" />
             <mat-error>
-                @if (
-                    password.dirty &&
-                    password.hasError('required')
-                ) {
+                @if (password.dirty && password.hasError('required')) {
                     <span> Enter a valid password </span>
                 }
             </mat-error>
@@ -110,7 +105,11 @@
         <div class="actions">
             <button
                 mat-flat-button
-                [disabled]="loading() || !password.valid || password.hasError('required')"
+                [disabled]="
+                    loading() ||
+                    !password.valid ||
+                    password.hasError('required')
+                "
                 (click)="requestLogIn(username.value, password.value)">
                 Next
             </button>
